@@ -1,3 +1,10 @@
+---
+<div align="center">
+  <img alt="Logo" src="https://raw.githubusercontent.com/SABERGLOW/Mimir/b8f738a693c7e3cc6ea1d6af28fdf81606789646/public/logo/LogoText.svg" width="750" />
+</div>
+
+---
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
