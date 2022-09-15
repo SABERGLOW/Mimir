@@ -28,3 +28,19 @@ a {
     background: white;
   }
 }
+
+
+/* Creating a custom utility class called `icon` that has the following properties:
+- `h-9`: height of 9
+- `w-6`: width of 6
+- `lg:w-9`: width of 9 on large screens
+- `cursor-pointer`: cursor is a pointer
+- `rounded-sm`: rounded corners
+- `lg:p-1`: padding of 1 on large screens
+- `lg:hover:bg-gray-100`: background color of gray-100 on large screens when hovered over */
+@layer components{
+  .icon{
+    @apply h-9 w-6 lg:w-9 cursor-pointer rounded-sm lg:p-1
+    lg:hover:bg-gray-100
+  }
+}
