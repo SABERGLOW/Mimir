@@ -1,13 +1,30 @@
 import React from "react";
 import Image from "next/image";
-import { ChevronDownIcon, HomeIcon, MagnifyingGlassIcon } from '@heroicons/react/24/solid'
-import { StarIcon } from '@heroicons/react/24/outline'
+import {
+	ChevronDownIcon,
+	HomeIcon,
+	MagnifyingGlassIcon
+} from "@heroicons/react/24/solid";
+
+import { 	
+	ArrowUpRightIcon,
+	BellIcon,
+	ChatBubbleOvalLeftEllipsisIcon,
+	PlusIcon,
+	ChartBarSquareIcon,
+	VideoCameraIcon,
+	MegaphoneIcon,
+} from "@heroicons/react/24/outline";
 
 function Header() {
 	return (
-		//... This is the Header component, it contains the navigation bar and the logo ...// 
-		<div className="sticky top-0 z-50 flex bg-white px-4 py-2 shadow-sm"> {/* sticky header, always stays on top even when we scroll down */}
-			<div className="relative h-10 w-20 flex-shrink-0 cursor-pointer"> {/* flex-shrink-0 makes sure our logo doesn't shrink when we set constraint to the header */}
+		//... This is the Header component, it contains the navigation bar and the logo ...//
+		<div className='sticky top-0 z-50 flex bg-white px-4 py-2 shadow-sm'>
+			{" "}
+			{/* sticky header, always stays on top even when we scroll down */}
+			<div className='relative h-10 w-20 flex-shrink-0 cursor-pointer'>
+				{" "}
+				{/* flex-shrink-0 makes sure our logo doesn't shrink when we set constraint to the header */}
 				<Image
 					objectFit='contain'
 					src='/logo/LogoText.svg'
@@ -15,9 +32,8 @@ function Header() {
 					alt='logo'
 				/>
 			</div>
-
 			{/* Home Icon + Dropdown menu */}
-			<div className="flex items-center mx-7 xl:min-w-[300px]"> 
+			<div className='flex items-center mx-7 xl:min-w-[300px]'>
 				{/* flex : put the items in a row,
 					items-center : center along the y axis,
 					mx-7 : a margin of 7 along x axis,
@@ -25,20 +41,20 @@ function Header() {
 				*/}
 
 				{/* Home Icon */}
-				<HomeIcon className="h-5 w-5"/>
-				<p className="flex-1 ml-2 lg:inline hidden">Home
+				<HomeIcon className='h-5 w-5' />
+				<p className='flex-1 ml-2 lg:inline hidden'>
+					Home
 					{/* flex-1 : allow our component to graw/shrink as needed
 						ml-2 : add a margin of 2 along x axis
 						lg:inline : show the text on large screens
 						hidden : hide the text on small screens
 					*/}
 				</p>
-				<ChevronDownIcon className="h-5 w-5"/>
+				<ChevronDownIcon className='h-5 w-5' />
 			</div>
 
-
 			{/* Search Bar */}
-			<form className="flex flex-1 items-center space-x-2 border border-gray-200 rounded bg-gray-100 px-3 py-1 ">
+			<form className='flex flex-1 items-center space-x-2 border border-gray-200 rounded bg-gray-100 px-3 py-1 '>
 				{/* flex : put the items in a row,
 					flex-1 : allow our component to graw/shrink as needed
 					items-center : center along the y axis,
@@ -51,13 +67,38 @@ function Header() {
 					py-1 : padding of 1 along y axis
 				*/}
 
-				<MagnifyingGlassIcon className="h-6 w-6 text-gray-400"/>
-				<input className=" flex-1 bg-transparent outline-none" type="text" placeholder="Search Mimir"/>
-				<button hidden type="submit"/> 
-
+				<MagnifyingGlassIcon className='h-6 w-6 text-gray-400' />
+				<input
+					className=' flex-1 bg-transparent outline-none'
+					type='text'
+					placeholder='Search Mimir'
+				/>
+				<button hidden type='submit' />
 			</form>
+
+			{/* Right Header Side: Profile + Messages + Notifications etc */}
+			<div className="text-gray-500 space-x-2 items-center mx-5 hidden lg:inline-flex ">
+				{/* text-gray-500 : icon color set to gray
+					items-center : center along the y axis,
+					space-x-2 : horizontal space of 2 between the elements
+					mx-5 : a margin of 5 along x axis
+					hidden : hide the icons on small screens
+					lg:inline-flex : show the icons on large screens
+				*/}
+
+				<ArrowUpRightIcon className="icon"/>
+				<ChartBarSquareIcon className="icon"/>
+				<VideoCameraIcon className="icon"/>
+
+				{/* A horizontal line that separates the icons on the right side of the header. */}
+				<hr className="h-10 border border-gray-100"/>
+
+				<ChatBubbleOvalLeftEllipsisIcon className="icon"/>
+				<BellIcon className="icon"/>
+				<PlusIcon className="icon"/>
+				<MegaphoneIcon className="icon"/>
+			</div>
 		</div>
-		
 	);
 }
 
