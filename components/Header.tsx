@@ -1,5 +1,7 @@
 import React from "react";
 import Image from "next/image";
+import { signIn } from "next-auth/react";
+
 import {
 	ChevronDownIcon,
 	HomeIcon,
@@ -17,6 +19,7 @@ import {
 	MegaphoneIcon,
 	UserCircleIcon,
 } from "@heroicons/react/24/outline";
+
 
 function Header() {
 	return (
@@ -108,7 +111,10 @@ function Header() {
 			</div>
 
 			{/* Mimir Logo and Sign In button */}
-			<div className="hidden lg:flex items-center cursor-pointer space-x-2 border border-gray-200 bg-gray-100 rounded p-2">
+			<div 
+			/* A function that calls the signIn function from the next-auth library. */
+			onClick={() => signIn()}
+			className="hidden lg:flex items-center cursor-pointer space-x-2 border border-gray-200 bg-gray-100 rounded p-2">
 				{/* hidden : hide the logo and sign in button on small screens
 					lg:flex : show the logo and sign in button on large screens
 					items-center : center along the y axis,
@@ -130,7 +136,7 @@ function Header() {
 				/>
 				{/* objectFit='contain': make sure the image fits in the container */}
 				</div>
-				
+
 				<p className="text-gray-400">
 					Log In
 				</p>
