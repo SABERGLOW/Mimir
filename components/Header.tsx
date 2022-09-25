@@ -107,16 +107,30 @@ function Header() {
 				</Bars3Icon>
 			</div>
 
+			{/* Mimir Logo and Sign In button */}
 			<div className="hidden lg:flex items-center cursor-pointer space-x-2 border border-gray-200 bg-gray-100 rounded p-2">
-				{/* Log In and Profile Picture */}
+				{/* hidden : hide the logo and sign in button on small screens
+					lg:flex : show the logo and sign in button on large screens
+					items-center : center along the y axis,
+					cursor-pointer : change the cursor to a pointer when we hover over the component
+					space-x-2 : horizontal space of 2 between the elements
+					border : add a border of width 1px
+					border-gray-200 : color of the border
+					bg-gray-100 : background color
+					rounded : round the corners, 4px
+					p-2 : padding of 2
+				*/}
+
 				<div className="relative h-7 w-20 flex-shrink-0">
 				<Image
-					objectFit='contain'
+					objectFit='contain' 
 					src='/logo/LogoText.svg'
 					layout='fill'
 					alt='login'
 				/>
+				{/* objectFit='contain': make sure the image fits in the container */}
 				</div>
+				
 				<p className="text-gray-400">
 					Log In
 				</p>
