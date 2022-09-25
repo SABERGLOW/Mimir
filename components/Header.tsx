@@ -3,7 +3,8 @@ import Image from "next/image";
 import {
 	ChevronDownIcon,
 	HomeIcon,
-	MagnifyingGlassIcon
+	MagnifyingGlassIcon,
+	Bars3Icon,
 } from "@heroicons/react/24/solid";
 
 import { 	
@@ -14,6 +15,7 @@ import {
 	ChartBarSquareIcon,
 	VideoCameraIcon,
 	MegaphoneIcon,
+	UserCircleIcon,
 } from "@heroicons/react/24/outline";
 
 function Header() {
@@ -86,20 +88,51 @@ function Header() {
 					lg:inline-flex : show the icons on large screens
 				*/}
 
-				<ArrowUpRightIcon className="icon"/>
-				<ChartBarSquareIcon className="icon"/>
-				<VideoCameraIcon className="icon"/>
+				<ArrowUpRightIcon className="icon hidden lg:inline-flex "/>
+				<ChartBarSquareIcon className="icon hidden lg:inline-flex "/>
+				<VideoCameraIcon className="icon hidden lg:inline-flex "/>
 
 				{/* A horizontal line that separates the icons on the right side of the header. */}
-				<hr className="h-10 border border-gray-100"/>
+				<hr className="h-10 border border-gray-100 hidden lg:inline-flex "/>
 
-				<ChatBubbleOvalLeftEllipsisIcon className="icon"/>
-				<BellIcon className="icon"/>
-				<PlusIcon className="icon"/>
-				<MegaphoneIcon className="icon"/>
+				<ChatBubbleOvalLeftEllipsisIcon className="icon hidden lg:inline-flex "/>
+				<BellIcon className="icon hidden lg:inline-flex "/>
+				<PlusIcon className="icon hidden lg:inline-flex "/>
+				<MegaphoneIcon className="icon hidden lg:inline-flex "/>
 			</div>
+
+			<div className="ml-5 flex items-center lg:hidden">
+				{/* Hamburger Menu Icon */}
+				<Bars3Icon className="icon">
+				</Bars3Icon>
+			</div>
+
+			<div className="hidden lg:flex items-center cursor-pointer space-x-2 border border-gray-200 bg-gray-100 rounded p-2">
+				{/* Log In and Profile Picture */}
+				<div className="relative h-7 w-20 flex-shrink-0">
+				<Image
+					objectFit='contain'
+					src='/logo/LogoText.svg'
+					layout='fill'
+					alt='login'
+				/>
+				</div>
+				<p className="text-gray-400">
+					Log In
+				</p>
+			</div>
+
+			<div className="mobile-menu hidden">
+				{/* Mobile Menu */}
+			</div>
+			
 		</div>
+		
+
 	);
+
+
+	
 }
 
 export default Header;
