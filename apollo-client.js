@@ -1,9 +1,8 @@
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 
 const client = new ApolloClient({
-	uri: "https://villazon.stepzen.net/api/mimir-stepzen/__graphql",
+	uri: process.env.NEXT_PUBLIC_STEPZEN_API_URL,
 	headers: {
-        uri: "https://villazon.stepzen.net/api/mimir-stepzen/__graphql",
 		Authorization: `apikey ${process.env.NEXT_PUBLIC_STEPZEN_KEY}`,
 	},
 	cache: new InMemoryCache(),
