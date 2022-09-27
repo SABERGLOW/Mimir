@@ -1,6 +1,7 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import { SessionProvider } from 'next-auth/react'
+import Header from '../components/Header'
 
 /**
  * Wrapping "MyApp" with "SessionProvider" will make session available to all pages 
@@ -19,7 +20,15 @@ function MyApp({ Component, pageProps: {session, ...pageProps} }: AppProps) {
   /* A higher order component that wraps the component that is being rendered. */
   return (
     <SessionProvider session={pageProps.session}>
-      <Component {...pageProps} />
+      {/* Header will appear in each page */}
+      <div className='h-screen overflow-y-scroll bg-slate-200'>
+        {/* h-screen : height of the screen
+            overflow-y-scroll : allow the page to scroll vertically
+            bg-slate-200 : background color of the page
+        */}
+        <Component {...pageProps} />
+        <Header/>
+      </div>
     </SessionProvider>
   )
 }
