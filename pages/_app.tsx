@@ -2,6 +2,8 @@ import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import { SessionProvider } from 'next-auth/react'
 import Header from '../components/Header'
+import { ApolloProvider } from '@apollo/client'
+import client from '../apollo-client'
 
 /**
  * Wrapping "MyApp" with "SessionProvider" will make session available to all pages 
@@ -16,20 +18,23 @@ import Header from '../components/Header'
  * @param {AppProps}  - AppProps
  * @returns A higher order component that wraps the component that is being rendered.
  */
+
 function MyApp({ Component, pageProps: {session, ...pageProps} }: AppProps) {
-  /* A higher order component that wraps the component that is being rendered. */
+  /* A higher order component design that wraps the component that is being rendered. */
   return (
-    <SessionProvider session={pageProps.session}>
-      {/* Header will appear in each page */}
-      <div className='h-screen overflow-y-scroll bg-slate-200'>
-        {/* h-screen : height of the screen
-            overflow-y-scroll : allow the page to scroll vertically
-            bg-slate-200 : background color of the page
-        */}
-        <Component {...pageProps} />
-        <Header/>
-      </div>
-    </SessionProvider>
+    <ApolloProvider client={client}>
+      <SessionProvider session={pageProps.session}>
+        {/* Header will appear in each page */}
+        <div className='h-screen overflow-y-scroll bg-slate-200'>
+          {/* h-screen : height of the screen
+              overflow-y-scroll : allow the page to scroll vertically
+              bg-slate-200 : background color of the page
+          */}
+          <Component {...pageProps} />
+          <Header/>
+        </div>
+      </SessionProvider>
+    </ApolloProvider>
   )
 }
 
