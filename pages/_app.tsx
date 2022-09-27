@@ -30,8 +30,8 @@ function MyApp({ Component, pageProps: {session, ...pageProps} }: AppProps) {
               overflow-y-scroll : allow the page to scroll vertically
               bg-slate-200 : background color of the page
           */}
-          <Component {...pageProps} />
           <Header/>
+          <Component {...pageProps} />
         </div>
       </SessionProvider>
     </ApolloProvider>
