@@ -1,228 +1,228 @@
 type COMMENT {
-  created_at: DateTime
-  id: ID!
-  pOST: POST
-    @materializer(
-      query: "getPOST"
-      arguments: [{ name: "id", field: "post_id" }]
-    )
-  post_id: ID
-  text: String
-  username: String
+	created_at: DateTime
+	id: ID!
+	pOST: POST
+		@materializer(
+			query: "getPOST"
+			arguments: [{ name: "id", field: "post_id" }]
+		)
+	post_id: ID
+	text: String
+	username: String
 }
 
 type POST {
-  body: String
-  cOMMENTList: [COMMENT] @materializer(query: "getCOMMENTUsingPost_id")
-  created_at: DateTime
-  id: ID!
-  image: String
-  sUBREDDIT: SUBREDDIT
-    @materializer(
-      query: "getSUBREDDIT"
-      arguments: [{ name: "id", field: "subreddit_id" }]
-    )
-  subreddit_id: ID
-  title: String
-  username: String
-  vOTEList: [VOTE] @materializer(query: "getVOTEUsingPost_id")
+	body: String
+	cOMMENTList: [COMMENT] @materializer(query: "getCOMMENTUsingPost_id")
+	created_at: DateTime
+	id: ID!
+	image: String
+	sUBREDDIT: SUBREDDIT
+		@materializer(
+			query: "getSUBREDDIT"
+			arguments: [{ name: "id", field: "subreddit_id" }]
+		)
+	subreddit_id: ID
+	title: String
+	username: String
+	vOTEList: [VOTE] @materializer(query: "getVOTEUsingPost_id")
 }
 
 type SUBREDDIT {
-  created_at: DateTime
-  id: ID!
-  pOSTList: [POST] @materializer(query: "getPOSTUsingSubreddit_id")
-  topic: String
+	created_at: DateTime
+	id: ID!
+	pOSTList: [POST] @materializer(query: "getPOSTUsingSubreddit_id")
+	topic: String
 }
 
 type VOTE {
-  created_at: DateTime
-  id: ID!
-  pOST: POST
-    @materializer(
-      query: "getPOST"
-      arguments: [{ name: "id", field: "post_id" }]
-    )
-  post_id: ID
-  upvote: Boolean
-  username: String
+	created_at: DateTime
+	id: ID!
+	pOST: POST
+		@materializer(
+			query: "getPOST"
+			arguments: [{ name: "id", field: "post_id" }]
+		)
+	post_id: ID
+	upvote: Boolean
+	username: String
 }
 
 """
 These are some examples of queries generated from the schema. Feel free to modify them or add your own.
 """
 type Query {
-  getCOMMENTList: [COMMENT]
-    @dbquery(
-      type: "postgresql"
-      schema: "public"
-      table: "COMMENT"
-      configuration: "postgresql_config"
-    )
-  getCOMMENT(id: ID!): COMMENT
-    @dbquery(
-      type: "postgresql"
-      schema: "public"
-      table: "COMMENT"
-      configuration: "postgresql_config"
-    )
-  getPOSTList: [POST]
-    @dbquery(
-      type: "postgresql"
-      schema: "public"
-      table: "POST"
-      configuration: "postgresql_config"
-    )
-  getPOST(id: ID!): POST
-    @dbquery(
-      type: "postgresql"
-      schema: "public"
-      table: "POST"
-      configuration: "postgresql_config"
-    )
-  getCOMMENTUsingPost_id(id: ID!): [COMMENT]
-    @dbquery(
-      type: "postgresql"
-      query: """
-      SELECT T."created_at", T."id", T."post_id", T."text", T."username"
-        FROM "public"."COMMENT" T
-        WHERE T."post_id" = $1
-      """
-      configuration: "postgresql_config"
-    )
-  getVOTEUsingPost_id(id: ID!): [VOTE]
-    @dbquery(
-      type: "postgresql"
-      query: """
-      SELECT T."created_at", T."id", T."post_id", T."upvote", T."username"
-        FROM "public"."VOTE" T
-        WHERE T."post_id" = $1
-      """
-      configuration: "postgresql_config"
-    )
-  getSUBREDDITList: [SUBREDDIT]
-    @dbquery(
-      type: "postgresql"
-      schema: "public"
-      table: "SUBREDDIT"
-      configuration: "postgresql_config"
-    )
-  getSUBREDDIT(id: ID!): SUBREDDIT
-    @dbquery(
-      type: "postgresql"
-      schema: "public"
-      table: "SUBREDDIT"
-      configuration: "postgresql_config"
-    )
-  getPOSTUsingSubreddit_id(id: ID!): [POST]
-    @dbquery(
-      type: "postgresql"
-      query: """
-      SELECT T."body", T."created_at", T."id", T."image", T."subreddit_id", T."title", T."username"
-        FROM "public"."POST" T
-        WHERE T."subreddit_id" = $1
-      """
-      configuration: "postgresql_config"
-    )
-  getVOTEList: [VOTE]
-    @dbquery(
-      type: "postgresql"
-      schema: "public"
-      table: "VOTE"
-      configuration: "postgresql_config"
-    )
-  getVOTE(id: ID!): VOTE
-    @dbquery(
-      type: "postgresql"
-      schema: "public"
-      table: "VOTE"
-      configuration: "postgresql_config"
-    )
+	getCOMMENTList: [COMMENT]
+		@dbquery(
+			type: "postgresql"
+			schema: "public"
+			table: "COMMENT"
+			configuration: "postgresql_config"
+		)
+	getCOMMENT(id: ID!): COMMENT
+		@dbquery(
+			type: "postgresql"
+			schema: "public"
+			table: "COMMENT"
+			configuration: "postgresql_config"
+		)
+	getPOSTList: [POST]
+		@dbquery(
+			type: "postgresql"
+			schema: "public"
+			table: "POST"
+			configuration: "postgresql_config"
+		)
+	getPOST(id: ID!): POST
+		@dbquery(
+			type: "postgresql"
+			schema: "public"
+			table: "POST"
+			configuration: "postgresql_config"
+		)
+	getCOMMENTUsingPost_id(id: ID!): [COMMENT]
+		@dbquery(
+			type: "postgresql"
+			query: """
+			SELECT T."created_at", T."id", T."post_id", T."text", T."username"
+			  FROM "public"."COMMENT" T
+			  WHERE T."post_id" = $1
+			"""
+			configuration: "postgresql_config"
+		)
+	getVOTEUsingPost_id(id: ID!): [VOTE]
+		@dbquery(
+			type: "postgresql"
+			query: """
+			SELECT T."created_at", T."id", T."post_id", T."upvote", T."username"
+			  FROM "public"."VOTE" T
+			  WHERE T."post_id" = $1
+			"""
+			configuration: "postgresql_config"
+		)
+	getSUBREDDITList: [SUBREDDIT]
+		@dbquery(
+			type: "postgresql"
+			schema: "public"
+			table: "SUBREDDIT"
+			configuration: "postgresql_config"
+		)
+	getSUBREDDIT(id: ID!): SUBREDDIT
+		@dbquery(
+			type: "postgresql"
+			schema: "public"
+			table: "SUBREDDIT"
+			configuration: "postgresql_config"
+		)
+	getPOSTUsingSubreddit_id(id: ID!): [POST]
+		@dbquery(
+			type: "postgresql"
+			query: """
+			SELECT T."body", T."created_at", T."id", T."image", T."subreddit_id", T."title", T."username"
+			  FROM "public"."POST" T
+			  WHERE T."subreddit_id" = $1
+			"""
+			configuration: "postgresql_config"
+		)
+	getVOTEList: [VOTE]
+		@dbquery(
+			type: "postgresql"
+			schema: "public"
+			table: "VOTE"
+			configuration: "postgresql_config"
+		)
+	getVOTE(id: ID!): VOTE
+		@dbquery(
+			type: "postgresql"
+			schema: "public"
+			table: "VOTE"
+			configuration: "postgresql_config"
+		)
 }
 
 """
 These are some examples of mutations generated from the schema. Feel free to modify them or add your own.
 """
 type Mutation {
-  insertCOMMENT(
-    post_id: ID!
-    text: String!
-    created_at: DateTime!
-    username: String!
-  ): COMMENT
-    @dbquery(
-      type: "postgresql"
-      schema: "public"
-      table: "COMMENT"
-      dml: INSERT
-      configuration: "postgresql_config"
-    )
-  deleteCOMMENT(id: ID!): COMMENT
-    @dbquery(
-      type: "postgresql"
-      schema: "public"
-      table: "COMMENT"
-      dml: DELETE
-      configuration: "postgresql_config"
-    )
-  insertPOST(
-    image: String!
-    body: String!
-    created_at: DateTime!
-    subreddit_id: ID!
-    title: String!
-    username: String!
-  ): POST
-    @dbquery(
-      type: "postgresql"
-      schema: "public"
-      table: "POST"
-      dml: INSERT
-      configuration: "postgresql_config"
-    )
-  deletePOST(id: ID!): POST
-    @dbquery(
-      type: "postgresql"
-      schema: "public"
-      table: "POST"
-      dml: DELETE
-      configuration: "postgresql_config"
-    )
-  insertSUBREDDIT(created_at: DateTime!, topic: String!): SUBREDDIT
-    @dbquery(
-      type: "postgresql"
-      schema: "public"
-      table: "SUBREDDIT"
-      dml: INSERT
-      configuration: "postgresql_config"
-    )
-  deleteSUBREDDIT(id: ID!): SUBREDDIT
-    @dbquery(
-      type: "postgresql"
-      schema: "public"
-      table: "SUBREDDIT"
-      dml: DELETE
-      configuration: "postgresql_config"
-    )
-  insertVOTE(
-    post_id: ID!
-    created_at: DateTime!
-    upvote: Boolean!
-    username: String!
-  ): VOTE
-    @dbquery(
-      type: "postgresql"
-      schema: "public"
-      table: "VOTE"
-      dml: INSERT
-      configuration: "postgresql_config"
-    )
-  deleteVOTE(id: ID!): VOTE
-    @dbquery(
-      type: "postgresql"
-      schema: "public"
-      table: "VOTE"
-      dml: DELETE
-      configuration: "postgresql_config"
-    )
+	insertCOMMENT(
+		post_id: ID!
+		text: String!
+		created_at: DateTime!
+		username: String!
+	): COMMENT
+		@dbquery(
+			type: "postgresql"
+			schema: "public"
+			table: "COMMENT"
+			dml: INSERT
+			configuration: "postgresql_config"
+		)
+	deleteCOMMENT(id: ID!): COMMENT
+		@dbquery(
+			type: "postgresql"
+			schema: "public"
+			table: "COMMENT"
+			dml: DELETE
+			configuration: "postgresql_config"
+		)
+	insertPOST(
+		image: String!
+		body: String!
+		#created_at: DateTime!
+		subreddit_id: ID!
+		title: String!
+		username: String!
+	): POST
+		@dbquery(
+			type: "postgresql"
+			schema: "public"
+			table: "POST"
+			dml: INSERT
+			configuration: "postgresql_config"
+		)
+	deletePOST(id: ID!): POST
+		@dbquery(
+			type: "postgresql"
+			schema: "public"
+			table: "POST"
+			dml: DELETE
+			configuration: "postgresql_config"
+		)
+	insertSUBREDDIT(created_at: DateTime!, topic: String!): SUBREDDIT
+		@dbquery(
+			type: "postgresql"
+			schema: "public"
+			table: "SUBREDDIT"
+			dml: INSERT
+			configuration: "postgresql_config"
+		)
+	deleteSUBREDDIT(id: ID!): SUBREDDIT
+		@dbquery(
+			type: "postgresql"
+			schema: "public"
+			table: "SUBREDDIT"
+			dml: DELETE
+			configuration: "postgresql_config"
+		)
+	insertVOTE(
+		post_id: ID!
+		created_at: DateTime!
+		upvote: Boolean!
+		username: String!
+	): VOTE
+		@dbquery(
+			type: "postgresql"
+			schema: "public"
+			table: "VOTE"
+			dml: INSERT
+			configuration: "postgresql_config"
+		)
+	deleteVOTE(id: ID!): VOTE
+		@dbquery(
+			type: "postgresql"
+			schema: "public"
+			table: "VOTE"
+			dml: DELETE
+			configuration: "postgresql_config"
+		)
 }
