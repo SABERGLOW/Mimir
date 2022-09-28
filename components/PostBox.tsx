@@ -100,11 +100,11 @@ function PostBox() {
 					{Object.keys(errors).length > 0 && (
 						<div className="space-y-2 p-2 text-red-500">
 							{errors.postTitle?.type === "required" && (
-								<p className=" text-xs">A Title for the post is required.</p>
+								<p className=" text-xs">❗A Title for the post is required.</p>
 							)}
 
 							{errors.subreddit?.type === "required" && (
-								<p className="text-xs">A Subreddit for the post is required.</p>
+								<p className="text-xs">❗A Subreddit for the post is required.</p>
 							)}
 						</div>
 					)}
