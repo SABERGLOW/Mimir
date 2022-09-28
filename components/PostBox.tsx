@@ -26,8 +26,16 @@ function PostBox() {
 		formState: { errors } 
 	} = useForm();
 
+	{/* onSubmit function */}
+	const onSubmit = handleSubmit( async (formData) => {
+		console.log(formData);
+	})
+
 	return (
-		<form className='sticky top-16 z-50 bg-white border rounded-md border-gray-300 p-2 '>
+		<form 
+			/* Calling the onSubmit function. */
+			onSubmit={onSubmit}
+			className='sticky top-16 z-50 bg-white border rounded-md border-gray-300 p-2 '>
 			<div className='flex items-center space-x-3 '>
 				{/* User Avatar */}
 				<Avatar />
@@ -74,8 +82,8 @@ function PostBox() {
 					</div>
 
 					{/* Image */}
-					{/* Checking if the imageBoxOpen state is true. If it is, it will display the div. If it is not, it
-						will not display the div. 
+					{/* Checking if the imageBoxOpen state is true. If it is, it will display the div. 
+						If it is not, it will not display the div. 
 					*/}
 					{imageBoxOpen && (
 						<div className="flex items-center px-2">
@@ -83,6 +91,35 @@ function PostBox() {
 							<input className="flex-1 m-2 bg-gray-50 p-2 outline-none" 
 							{...register("postImage")} type="text" placeholder="Optional" />
 						</div>
+					)}
+
+					{/* Erros */}
+					{/* Checking if there are any errors. If there are, it will display the relevant div. 
+						If there are not, it will not display the div. 
+					*/}
+					{Object.keys(errors).length > 0 && (
+						<div className="space-y-2 p-2 text-red-500">
+							{errors.postTitle?.type === "required" && (
+								<p className=" text-xs">A Title for the post is required.</p>
+							)}
+
+							{errors.subreddit?.type === "required" && (
+								<p className="text-xs">A Subreddit for the post is required.</p>
+							)}
+						</div>
+					)}
+
+					{/* Post Button */}
+					{/* Checking if the user has typed anything in the Post Title input box. 
+						If they have, it will display the submit post button. 
+						If they have not, it will not display the button. 
+					*/}
+					{!!watch("postTitle") && (
+						<button 
+							type="submit"
+							className="w-full rounded-full bg-blue-400 text-white ">
+							Post
+						</button>
 					)}
 
 				</div>
