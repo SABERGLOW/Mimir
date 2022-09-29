@@ -201,7 +201,7 @@ type Mutation {
 			dml: DELETE
 			configuration: "postgresql_config"
 		)
-	insertSUBREDDIT(created_at: DateTime!, topic: String!): SUBREDDIT
+	insertSUBREDDIT(topic: String!): SUBREDDIT
 		@dbquery(
 			type: "postgresql"
 			schema: "public"
