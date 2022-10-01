@@ -17,7 +17,6 @@ export const ADD_POST = gql`
             username: $username
         ){
             id
-            created-at
             title
             body
             image
@@ -29,7 +28,8 @@ export const ADD_POST = gql`
 
 /* A GraphQL mutation that will insert a Subreddit in the Supabase DB. */
 export const ADD_SUBREDDIT = gql`
-    mutation MyMutation($topic: String!){
+    mutation MyMutation($topic: String!)
+    {
         insertSUBREDDIT(topic: $topic){
             id
             topic
