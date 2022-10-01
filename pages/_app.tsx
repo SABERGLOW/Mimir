@@ -4,6 +4,7 @@ import { SessionProvider } from 'next-auth/react'
 import Header from '../components/Header'
 import { ApolloProvider } from '@apollo/client'
 import client from '../apollo-client'
+import { Toaster } from 'react-hot-toast'
 
 /**
  * Wrapping "MyApp" with "SessionProvider" will make session available to all pages 
@@ -24,6 +25,9 @@ function MyApp({ Component, pageProps: {session, ...pageProps} }: AppProps) {
   return (
     <ApolloProvider client={client}>
       <SessionProvider session={pageProps.session}>
+
+        <Toaster/>
+
         {/* Header will appear in each page */}
         <div className='h-screen overflow-y-scroll bg-slate-200'>
           {/* h-screen : height of the screen
