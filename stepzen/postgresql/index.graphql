@@ -12,20 +12,20 @@ type COMMENT {
 }
 
 type POST {
-	body: String
-	cOMMENTList: [COMMENT] @materializer(query: "getCOMMENTUsingPost_id")
 	created_at: DateTime
 	id: ID!
+	subreddit_id: ID
+	username: String
+	title: String
+	body: String
 	image: String
-	sUBREDDIT: SUBREDDIT
+	votes: [VOTE] @materializer(query: "getVOTEUsingPost_id")
+	comments: [COMMENT] @materializer(query: "getCOMMENTUsingPost_id")
+	subreddit: SUBREDDIT
 		@materializer(
 			query: "getSUBREDDIT"
 			arguments: [{ name: "id", field: "subreddit_id" }]
 		)
-	subreddit_id: ID
-	title: String
-	username: String
-	vOTEList: [VOTE] @materializer(query: "getVOTEUsingPost_id")
 }
 
 type SUBREDDIT {
@@ -97,6 +97,7 @@ type Query {
 			SELECT T."created_at", T."id", T."post_id", T."upvote", T."username"
 				FROM "public"."VOTE" T
 				WHERE T."post_id" = $1
+				ORDER BY T."created_at" DESC
 			"""
 			configuration: "postgresql_config"
 		)
