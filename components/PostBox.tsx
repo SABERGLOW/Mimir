@@ -9,6 +9,14 @@ import { ADD_POST, ADD_SUBREDDIT } from "../graphql/mutations";
 import { GET_SUBREDDIT_LIST_BY_TOPIC } from "../graphql/queries";
 import toast from "react-hot-toast";
 
+/**
+ * FormData is an object with a string property called postTitle, a string property called postBody, a
+ * string property called postImage, and a string property called subreddit.
+ * @property {string} postTitle - The title of the post
+ * @property {string} postBody - The body of the post.
+ * @property {string} postImage - The image that will be posted to the subreddit alongisde the post.
+ * @property {string} subreddit - The subreddit you want to post to.
+ */
 type FormData = {
 	postTitle: string;
 	postBody: string;
@@ -16,28 +24,32 @@ type FormData = {
 	subreddit: string;
 };
 
+/**
+ * This function handles the creation of a post. It uses the useSession hook to get the logged in user
+ * state, the useForm hook to handle form data, and the useMutation hook to handle the mutation. It
+ * also uses the react-hot-toast library to display a notification when the post is created. It
+ * returns a form with a title, body, image, and subreddit input.It also contains the button  and logic that
+ * submits the form data to the GraphQL API. 
+ * @returns A form that allows the user to create a post.
+ * @see https://react-hook-form.com/api/useform
+ * @see https://www.apollographql.com/docs/react/data/mutations/
+ * @see https://next-auth.js.org/getting-started/client
+ * @see https://react-hot-toast.com/
+ */
 function PostBox() {
-	{
-		/* useSession so we can use logged in user state*/
-	}
+	{/* useSession so we can use logged in user state*/}
 	const { data: session } = useSession();
 
-	{
-		/* Using the useMutation hook from Apollo Client. It is taking the ADD_POST mutation and storing it in the addPost variable. */
-	}
+	{/* Using the useMutation hook from Apollo Client. It is taking the ADD_POST mutation and storing it in the addPost variable. */}
 	const [addPost] = useMutation(ADD_POST);
 
-	{
-		/* taking the ADD_SUBREDDIT mutation and storing it in the addSubreddit variable. */
-	}
+	{/* taking the ADD_SUBREDDIT mutation and storing it in the addSubreddit variable. */}
 	const [addSubreddit] = useMutation(ADD_SUBREDDIT);
 
-	{
-		/* useState for Image */
-	}
+	{/* useState for Image */}
 	const [imageBoxOpen, setimageBoxOpen] = useState(false);
 
-	/* useForm so we can use form state, Destructuring the useForm hook. */
+	{/* useForm so we can use form state, Destructuring the useForm hook. */}
 	const {
 		register,
 		handleSubmit,
@@ -46,18 +58,14 @@ function PostBox() {
 		formState: { errors },
 	} = useForm();
 
-	{
-		/* onSubmit function */
-	}
+	{/* onSubmit function */}
 	const onSubmit = handleSubmit(async (formData) => {
 		console.log(formData);
 
-		{
-			/* A toast notification. It is a notification that pops up on the screen. react-hot-toast*/
-		}
+		{/* A toast notification. It is a notification that pops up on the screen. react-hot-toast*/}
 		const notification = toast.loading("Posting...");
 
-		/* Checking if the subreddit exists. If it does not exist, it will alert the user. */
+		{/* Checking if the subreddit exists. If it does not exist, it will alert the user. */}
 		try {
 			/* Destructuring the data from the query. */
 
@@ -95,13 +103,11 @@ function PostBox() {
 
 				const image = formData.postImage || " "; // If there is no image, set it to an empty string, protecting the database from null values.
 
-				{
-					/* Adding a new post to the database. it will have the subreddit id of the newSubreddit.
+				{/* Adding a new post to the database. it will have the subreddit id of the newSubreddit.
 					Destructuring the data from the addPost mutation. 
-				*/
-				}
+				*/}
 
-				/* Adding a new post to the database. */
+				{/* Adding a new post to the database. */}
 				const {
 					data: { insertPOST: newPost },
 				} = await addPost({
@@ -126,8 +132,9 @@ function PostBox() {
 
 				const image = formData.postImage || " "; // If there is no image, set it to an empty string, protecting the database from null values.
 
-				/* Destructuring the data from the addPost mutation. */
-				/* Adding a new post to the database. */
+				{/* Destructuring the data from the addPost mutation.
+					Adding a new post to the database. 
+				*/}
 				const {
 					data: { insertPOST: newPost },
 				} = await addPost({
@@ -143,9 +150,7 @@ function PostBox() {
 				console.log("New Post created: ", newPost);
 			}
 
-			{
-				/* After the post has been added to the db */
-			}
+			{/* After the post has been added to the db */}
 			setValue("postTitle", ""); // Clear the post title
 			setValue("postBody", ""); // Clear the post body
 			setValue("postImage", ""); // Clear the post image
