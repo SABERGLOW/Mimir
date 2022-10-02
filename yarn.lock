@@ -161,6 +161,13 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-timeago@^4.1.3":
+  "integrity" "sha512-XaaMBzuXLw7lxPPDs/fenlohcf3NDqM5qP4oOL/Meu+Hb1QChW4Igw/SruS1llEqch18RQB3wDTIwvqq4nivvw=="
+  "resolved" "https://registry.npmjs.org/@types/react-timeago/-/react-timeago-4.1.3.tgz"
+  "version" "4.1.3"
+  dependencies:
+    "@types/react" "*"
+
 "@types/react@*", "@types/react@18.0.18":
   "integrity" "sha512-6hI08umYs6NaiHFEEGioXnxJ+oEhY3eRz8VCUaudZmGdtvPviCJB8mgaMxaDWAdPSYd4eFavrPk2QIolwbLYrg=="
   "resolved" "https://registry.npmjs.org/@types/react/-/react-18.0.18.tgz"
