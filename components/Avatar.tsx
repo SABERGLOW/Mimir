@@ -14,9 +14,14 @@ type Props = {
 };
 
 /**
- * This function takes in a seed and a large boolean and returns a div with an image inside of it.
- * @param {Props}  - seed - the seed for the avatar
- * @returns A component that renders an image.
+ * This function renders an image with a source of either the seed or the user's name, or a
+ * placeholder. The Avatar component is used in the Header and PostBox component.
+ * The Avatar component is a functional component that uses the useSession hook to fetch data from the
+ * NextAuth API. The Avatar component is being returned.
+ * The Avatar is generated using DiceBear Avatars.
+ * @see {@link https://avatars.dicebear.com/docs/http-api}
+ * @param {Props} props - Props is an object with optional properties seed and large.
+ * @returns The Avatar component is being returned.
  */
 function Avatar({ seed, large }: Props) {
 	{/* useSession so we can use logged in user state */}
