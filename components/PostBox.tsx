@@ -270,7 +270,7 @@ function PostBox() {
 
 					{/* Sub-Reddit */}
 					<div className='flex items-center px-2'>
-						<p className='min-w-[90px]'>Subreddit:</p>
+						<p className='min-w-[90px]'>SubMimir:</p>
 						<input
 							className='flex-1 m-2 bg-gray-50 p-2 outline-none'
 							{...register("subreddit", { required: true })}
