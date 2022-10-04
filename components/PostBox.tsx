@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { useMutation } from "@apollo/client";
 import client from "../apollo-client";
 import { ADD_POST, ADD_SUBREDDIT } from "../graphql/mutations";
-import { GET_SUBREDDIT_LIST_BY_TOPIC } from "../graphql/queries";
+import { GET_ALL_POSTS, GET_SUBREDDIT_LIST_BY_TOPIC } from "../graphql/queries";
 import toast from "react-hot-toast";
 
 /**
@@ -40,8 +40,16 @@ function PostBox() {
 	{/* useSession so we can use logged in user state*/}
 	const { data: session } = useSession();
 
-	{/* Using the useMutation hook from Apollo Client. It is taking the ADD_POST mutation and storing it in the addPost variable. */}
-	const [addPost] = useMutation(ADD_POST);
+	{/* Using the useMutation hook from Apollo Client. It is taking the ADD_POST mutation and storing it in the addPost variable.
+		refetchQueries is an array of queries that will be refetched after the mutation is completed. 
+		We are refetching the GET_ALL_POSTS query so that the new post will be displayed on the page.
+	*/}
+	const [addPost] = useMutation(ADD_POST, {
+		refetchQueries: [
+			GET_ALL_POSTS,
+			"getPOSTList"
+		],
+	});
 
 	{/* taking the ADD_SUBREDDIT mutation and storing it in the addSubreddit variable. */}
 	const [addSubreddit] = useMutation(ADD_SUBREDDIT);
