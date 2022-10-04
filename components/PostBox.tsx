@@ -25,18 +25,28 @@ type FormData = {
 };
 
 /**
+ * Props is an object that has a property called subreddit that is a string.
+ * @property {string} subreddit - The name of the subreddit that we want to fetch the posts from.
+ */
+type Props = {
+	subreddit?: string;
+}
+
+/**
  * This function handles the creation of a post. It uses the useSession hook to get the logged in user
  * state, the useForm hook to handle form data, and the useMutation hook to handle the mutation. It
  * also uses the react-hot-toast library to display a notification when the post is created. It
  * returns a form with a title, body, image, and subreddit input.It also contains the button  and logic that
  * submits the form data to the GraphQL API. 
+ * 
+ * @param {Props} props - The props object. subreddit (optional) is a string that represents the name/topic of the subreddit that we want to fetch the posts from.
  * @returns A form that allows the user to create a post.
  * @see https://react-hook-form.com/api/useform
  * @see https://www.apollographql.com/docs/react/data/mutations/
  * @see https://next-auth.js.org/getting-started/client
  * @see https://react-hot-toast.com/
  */
-function PostBox() {
+function PostBox( {subreddit}: Props ) {
 	{/* useSession so we can use logged in user state*/}
 	const { data: session } = useSession();
 
@@ -80,10 +90,10 @@ function PostBox() {
 			const {
 				data: { getSUBREDDITListByTopic },
 			} = await client.query({
-				// Query for the subreddit topic; check if the subreddit with the topic exists
+				// Query for the subreddit topic; check if the subreddit with the topic exists; passed in already.
 				query: GET_SUBREDDIT_LIST_BY_TOPIC,
 				variables: {
-					topic: formData.subreddit,
+					topic: subreddit || formData.subreddit,
 				},
 			});
 
@@ -239,7 +249,7 @@ function PostBox() {
 					className='flex-1 bg-gray-50 p-2 pl-5 outline-none rounded-md '
 					type='text'
 					placeholder={
-						session ? "Create a Post" : "Sign In to create a post"
+						session ? subreddit ? `Create a post in m/${subreddit}` : "Create a Post" : "Sign In to create a post"
 					}
 				/>
 
@@ -268,16 +278,20 @@ function PostBox() {
 						/>
 					</div>
 
-					{/* Sub-Reddit */}
-					<div className='flex items-center px-2'>
-						<p className='min-w-[90px]'>SubMimir:</p>
-						<input
-							className='flex-1 m-2 bg-gray-50 p-2 outline-none'
-							{...register("subreddit", { required: true })}
-							type='text'
-							placeholder='i.e. Next.js'
-						/>
-					</div>
+					{/* Sub-Reddit - Only render if subreddit hasn't been passed in. */}
+					
+					{!subreddit && (
+						<div className='flex items-center px-2'>
+							<p className='min-w-[90px]'>SubMimir:</p>
+							<input
+								className='flex-1 m-2 bg-gray-50 p-2 outline-none'
+								{...register("subreddit", { required: true })}
+								type='text'
+								placeholder='i.e. Next.js'
+							/>
+						</div>
+					)}
+					
 
 					{/* Image */}
 					{/* Checking if the imageBoxOpen state is true. If it is, it will display the div. 
