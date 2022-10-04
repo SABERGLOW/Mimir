@@ -18,7 +18,7 @@ function Feed() {
 
     return (
         /* Conditional Rendering; Mapping over the posts array and returning a Post component for each post. */
-        <div>
+        <div className="mt-5 space-y-4">
             {posts?.map(post => (
                 <Post 
                     key={post.id}
