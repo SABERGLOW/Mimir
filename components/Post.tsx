@@ -85,8 +85,10 @@ function Post({ post }: Props) {
             </div>
 
             {/* Image*/}
+            {/* if post.image is empty or null, don't render it*/}
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img className="w-full" src={post.image} alt="post image" />
+            {post.image.length>1 && <img className="w-full rounded-md" src={post.image} alt="post" />}
+            
 
             {/* Footer*/}
             <div className="flex space-x-4 text-gray-400 ">
