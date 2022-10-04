@@ -232,7 +232,7 @@ function PostBox( {subreddit}: Props ) {
 		<form
 			/* Calling the onSubmit function. */
 			onSubmit={onSubmit}
-			className='sticky top-16 z-50 bg-white border rounded-md border-gray-300 p-2 '
+			className='sticky top-20 z-50 bg-white border rounded-md border-gray-300 p-2 '
 		>
 			<div className='flex items-center space-x-3 '>
 				{/* User Avatar */}
