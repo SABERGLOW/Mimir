@@ -70,7 +70,11 @@ type Query {
 		@dbquery(
 			type: "postgresql"
 			schema: "public"
-			table: "POST"
+			query: """
+			SELECT *
+				FROM "public"."POST"
+				ORDER BY "POST"."created_at" DESC
+			"""
 			configuration: "postgresql_config"
 		)
 	getPOST(id: ID!): POST
