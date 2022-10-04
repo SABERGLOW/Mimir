@@ -33,7 +33,7 @@ function Header() {
 				{/* flex-shrink-0 makes sure our logo doesn't shrink when we set constraint to the header */}
 				<Image
 					objectFit='contain'
-					src='/logo/LogoText.svg'
+					src="/logo/LogoText.svg"
 					layout='fill'
 					alt='logo'
 				/>
