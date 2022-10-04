@@ -1,9 +1,11 @@
 import React from 'react'
 import AvatarSubreddit from './AvatarSubreddit';
+import TimeAgo from 'react-timeago'
 
 import {
 	ArrowUpIcon,
     ArrowDownIcon,
+    ChatBubbleLeftIcon,
     BookmarkIcon,
     EllipsisHorizontalIcon,
     ShareIcon,
@@ -12,6 +14,10 @@ import {
 } from "@heroicons/react/24/outline";
 
 
+/**
+ * Props is an object that has a property called post that is of type Post
+ * @property {Post} post - Post
+ */
 type Props = {
     post: Post
 }
@@ -52,7 +58,7 @@ function Post({ post }: Props) {
             */}
 
             <ArrowUpIcon className="voteButtons hover:text-red-400"/>
-            <p className="text-black font-bold text-xs">0.0</p>
+            <p className="text-black font-bold text-xs subpixel-antialiased">0.0</p>
             <ArrowDownIcon className="voteButtons hover:text-red-400"/>
         </div>
 
@@ -60,16 +66,60 @@ function Post({ post }: Props) {
         
         <div className="p-3 pb-1">
             {/* Header*/}
-            <div>
+            <div className="flex items-center space-x-2 ">
                 <AvatarSubreddit seed={post.subreddit.topic}/>
-                <p>
-                    <span>m/{post.subreddit.topic}</span>
+                <p className="text-xs text-gray-400 subpixel-antialiased">
+                    <span className="font-bold text-gray-700 hover:text-blue-400 hover:underline">m/{post.subreddit.topic}</span> • Posted by u/{post.username} • <TimeAgo date={post.created_at} />
                 </p>
             </div>
 
             {/* Body*/}
+            <div className="py-4 ">
+                <h1 className="text-lg font-semibold subpixel-antialiased">
+                    {post.title}
+                </h1>
+                <p className="mt-2 text-sm font-normal subpixel-antialiased">
+                    {post.body}
+                </p>
 
-            {/* Image*/} 
+            </div>
+
+            {/* Image*/}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img className="w-full" src={post.image} alt="post image" />
+
+            {/* Footer*/}
+            <div className="flex space-x-4 text-gray-400 ">
+                <div className="postButtons">
+                    <ChatBubbleLeftIcon className="h-6 w-6"/>
+                    <p className="">{post.comments.length} Comments</p>
+
+                </div>
+
+                <div className="postButtons">
+                    <GiftIcon className="h-6 w-6"/>
+                    <p className="hidden sm:inline">Award</p>
+
+                </div>
+
+                <div className="postButtons">
+                    <ShareIcon className="h-6 w-6"/>
+                    <p className="hidden sm:inline">Share</p>
+
+                </div>
+
+                <div className="postButtons">
+                    <BookmarkIcon className="h-6 w-6"/>
+                    <p className="hidden sm:inline">Save</p>
+
+                </div>
+
+                <div className="postButtons">
+                    <EllipsisHorizontalIcon className="h-6 w-6"/>
+
+                </div>
+
+            </div>
         </div>
     </div>
     )
