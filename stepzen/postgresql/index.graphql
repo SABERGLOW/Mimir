@@ -84,6 +84,19 @@ type Query {
 			table: "POST"
 			configuration: "postgresql_config"
 		)
+
+	getPOSTListByPostId(post_id: ID!): POST
+		@dbquery(
+			type: "postgresql"
+			schema: "public"
+			query: """ 
+			SELECT * 
+			FROM "public"."POST"
+			WHERE "POST"."id"= $1
+			ORDER BY "POST"."created_at" desc
+		"""
+		configuration: "postgresql_config"
+		)
 	getCOMMENTUsingPost_id(id: ID!): [COMMENT]
 		@dbquery(
 			type: "postgresql"

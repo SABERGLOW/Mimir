@@ -3,7 +3,7 @@ import { gql } from "@apollo/client";
 /* A GraphQL query which gets a post by post id. comments, subreddit, and votes related to that post will also be pulled in using Materializer. */
 export const GET_POST_BY_POST_ID = gql`
     query MyQuery($post_id: ID!) {
-        getPOST(post_id: $post_id) {
+        getPOSTListByPostId(post_id: $post_id) {
             created_at
             id
             subreddit_id
