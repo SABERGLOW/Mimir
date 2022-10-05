@@ -9,7 +9,7 @@ import Image from "next/image";
  * will be rendered at 64x64.
  */
 type Props = {
-	seed?: string;
+	seed?: string | null;
 	large?: boolean;
 };
 
@@ -30,7 +30,7 @@ function Avatar({ seed, large }: Props) {
 	return (
 		/* Rendering an image. */
         <div
-			className={`relative h-10 w-10 rounded-full border-gray-300 bg-black overflow-hidden ${large && "h-20 w-20"}`}
+			className={`relative h-10 w-10 rounded-full border-gray-300 bg-slate-200 overflow-hidden ${large && "h-20 w-20"}`}
 		>
 			<Image
 				layout='fill'
