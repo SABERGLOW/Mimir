@@ -37,3 +37,24 @@ export const ADD_SUBREDDIT = gql`
         }
     }
 `
+
+/* A GraphQL mutation that will insert a comment in the Supabase DB. */
+export const ADD_COMMENT = gql`
+    mutation MyMutation(
+        $post_id: ID!,
+        $username: String!,
+        $text: String!
+    ){
+        insertCOMMENT(
+            post_id: $post_id,
+            username: $username,
+            text: $text
+        ){
+            id
+            created_at
+            post_id
+            username
+            text
+        }
+    }
+`       
