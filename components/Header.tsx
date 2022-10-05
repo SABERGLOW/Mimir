@@ -19,6 +19,7 @@ import {
 	MegaphoneIcon,
 	UserCircleIcon,
 } from "@heroicons/react/24/outline";
+import Link from "next/link";
 
 function Header() {
 	/* A function that checks if the user is logged in or not. */
@@ -31,12 +32,15 @@ function Header() {
 			<div className='relative h-10 w-20 flex-shrink-0 cursor-pointer'>
 				{" "}
 				{/* flex-shrink-0 makes sure our logo doesn't shrink when we set constraint to the header */}
-				<Image
-					objectFit='contain'
-					src="/logo/LogoText.svg"
-					layout='fill'
-					alt='logo'
-				/>
+				<Link href="/">
+					<Image
+						objectFit='contain'
+						src="/logo/LogoText.svg"
+						layout='fill'
+						alt='logo'
+					/>
+				</Link>
+
 			</div>
 			{/* Home Icon + Dropdown menu */}
 			<div className='flex items-center mx-7 xl:min-w-[300px]'>
