@@ -337,7 +337,7 @@ function PostBox( {subreddit}: Props ) {
 					{!!watch("postTitle") && (
 						<button
 							type='submit'
-							className='w-full rounded-full bg-blue-400 text-white '
+							className='w-full rounded-full bg-blue-400 text-white font-semibold'
 						>
 							Post
 						</button>
