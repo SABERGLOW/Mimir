@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client'
 import React from 'react'
-import { GET_ALL_POSTS } from '../graphql/queries'
+import { GET_ALL_POSTS, GET_ALL_POSTS_BY_TOPIC } from '../graphql/queries'
 import Post from './Post';
 import { LineWobble } from '@uiball/loaders'
 
@@ -20,13 +20,16 @@ type Props = {
  * @see https://www.apollographql.com/docs/react/data/queries/
  * @returns A React component
  */
-function Feed() {
+function Feed( {topic} : Props) {
 
     /* Destructuring the data and error from the useQuery hook. */
-    const { data, error } = useQuery(GET_ALL_POSTS);
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const { data, error } = !topic ? useQuery(GET_ALL_POSTS) : useQuery(GET_ALL_POSTS_BY_TOPIC, {
+        variables: { topic: topic },
+    })
 
     /* Destructuring the data from the useQuery hook and assigning it to the posts variable. */
-    const posts:Post[] = data?.getPOSTList;
+    const posts: Post[] = !topic ? data?.getPOSTList : data?.getPOSTListByTopic;
 
     /* A conditional rendering. If the posts array is empty, it will return the div with the loading animation and some text. */
     if(!posts) return (
