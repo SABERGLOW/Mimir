@@ -249,7 +249,7 @@ type Mutation {
 		)
 	insertVOTE(
 		post_id: ID!
-		created_at: DateTime!
+		#created_at: DateTime!
 		upvote: Boolean!
 		username: String!
 	): VOTE

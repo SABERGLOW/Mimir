@@ -58,3 +58,24 @@ export const ADD_COMMENT = gql`
         }
     }
 `       
+
+/* A GraphQL mutation that will insert a vote in the Supabase DB. */
+export const ADD_VOTE = gql`
+    mutation MyMutation(
+        $post_id: ID!,
+        $username: String!,
+        $upvote: Boolean!
+    ){
+        insertVOTE(
+            post_id: $post_id,
+            username: $username,
+            upvote: $upvote
+        ){
+            id
+            created_at
+            post_id
+            username
+            upvote
+        }
+    }
+`
