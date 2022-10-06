@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import AvatarSubreddit from './AvatarSubreddit';
 import TimeAgo from 'react-timeago'
 import { LineWobble } from '@uiball/loaders'
@@ -17,6 +17,11 @@ import {
 } from "@heroicons/react/24/outline";
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useSession } from 'next-auth/react';
+import { resolveValue, toast, ToastBar, Toaster } from 'react-hot-toast';
+import { ApolloCache, NormalizedCacheObject, useMutation, useQuery } from '@apollo/client';
+import { GET_ALL_VOTES_BY_POST_ID } from '../graphql/queries';
+import { ADD_VOTE } from '../graphql/mutations';
 
 
 /**
@@ -35,7 +40,98 @@ type Props = {
  */
 function Post({ post }: Props) {
 
-{/* It's checking if the URL contains /post/ and if it does, it sets isPostPage to true. */}
+    {/* It's getting the session data from the user. */}
+    const { data:session } = useSession();
+
+    {/* It's setting the vote state to a boolean. */}
+    const [vote, setVote] = useState<boolean>()
+
+    {/* It's getting the all votes related to post ID from the database. Uses GET_ALL_VOTES_BY_POST_ID query */}
+    const { data, loading } = useQuery(GET_ALL_VOTES_BY_POST_ID, {
+		variables: {
+			post_id: post?.id,
+		},
+	});
+
+    {/* It's adding a vote to the database. using ADD_VOTE mutation.
+        refetchQueries is used to refetch the data from the database after the mutation is done.
+    */}
+    const [addVote] = useMutation(ADD_VOTE, {
+        refetchQueries: [GET_ALL_VOTES_BY_POST_ID, "getVotesByPostId"],
+    })
+
+
+    useEffect(() => {
+        const votes: Vote[] = data?.getVotesByPostId;
+
+        {/* It's checking if the user has already voted.
+            If the user has already voted, it will set the vote state to the vote that the user has already voted. (upvote or downvote)
+        */}
+        const vote = votes?.find((vote) => vote?.username === session?.user?.name)?.upvote;
+
+        setVote(vote);
+
+    }, [data])
+
+    
+
+    {/* If isUpvote is true, it means the user has already upvoted.
+        If isUpvote is false, it means the user has already downvoted.
+        If isUpvote is null/undefined, it means the user has not voted yet.
+    */}
+    const upVote = async (isUpvote: boolean) => {
+        if(!session){
+            toast('You must be logged in to vote.', {icon: '❗',} );
+            return;
+        }
+
+        /* It's checking if the user has already upvoted. If the user has already upvoted, and is trying to upvote again, it will return. */
+        if (vote && isUpvote)
+        {
+            toast('You have already upvoted.', {icon: '⚠️',} );
+            return
+        } 
+        /* It's checking if the user has already downvoted. If the user has already downvoted, and is trying to downvote again, it will return. */
+        if (vote === false && !isUpvote)
+        {
+            toast('You have already downvoted.', {icon: '⚠️',} );
+            return
+        }
+        console.log("voting...", isUpvote)
+
+        await addVote({
+            variables: {
+                post_id: post?.id,
+                username: session?.user?.name,
+                upvote: isUpvote,
+                },
+        })
+    }
+
+    /**
+     * It takes in an object, and returns a number: displayNumber (number of votes)
+     * @param {any} data - any - this is the data that is returned from the query.
+     * @returns The return value is the number of upvotes minus the number of downvotes.
+     */
+    const displayVotes = (data: any) => {
+		const votes: Vote[] = data?.getVotesByPostId;
+		const displayNumber = votes?.reduce(
+			(total, vote) => (vote.upvote ? (total += 1) : (total -= 1)),
+			0
+		);
+		{/* It's checking if the votes array is empty. If it is, it will return 0. */}
+        if (votes?.length === 0) {
+            return 0;
+        }
+		if (displayNumber === 0) {
+			return votes[0]?.upvote ? 1 : -1;
+		}
+		return displayNumber;
+	};
+
+
+
+    {/* It's checking if the URL contains /post/ and if it does, it sets isPostPage to true. */}
     const { asPath } = useRouter();
 	const origin =
 		typeof window !== "undefined" && window.location.origin
@@ -47,7 +143,6 @@ function Post({ post }: Props) {
 	if (URL.includes("/post/")) {
 		isPostPage = true;
 	}
-	console.log("URL right now: ", URL);
 
     /* It's checking if the post is empty or null, if it is, it returns a loading animation. */
     if (!post) return (
@@ -94,9 +189,9 @@ function Post({ post }: Props) {
                         text-gray-400 : color of the text
                     */}
 
-                    <ArrowUpIcon className="voteButtons hover:text-red-400"/>
-                    <p className="text-black font-bold text-xs subpixel-antialiased">0</p>
-                    <ArrowDownIcon className="voteButtons hover:text-red-400"/>
+                    <ArrowUpIcon onClick={() => upVote(true)} className={`voteButtons hover:text-red-400 ${vote && 'text-red-400'}`}/>
+                    <p className="text-black font-bold text-xs subpixel-antialiased">{displayVotes(data)}</p>
+                    <ArrowDownIcon onClick={() => upVote(false)} className={`voteButtons hover:text-red-400 ${vote === false && 'text-blue-400'}`}/>
                 </div>
 
                 {/* POST body on the right side*/}
