@@ -29,19 +29,24 @@ function Header() {
 		<div className='sticky top-0 z-50 flex bg-white px-4 py-2 shadow-sm'>
 			{" "}
 			{/* sticky header, always stays on top even when we scroll down */}
-			<div className='relative h-10 w-20 flex-shrink-0 cursor-pointer'>
-				{" "}
+			
+				
 				{/* flex-shrink-0 makes sure our logo doesn't shrink when we set constraint to the header */}
 				<Link href="/">
-					<Image
-						objectFit='contain'
-						src="/logo/LogoText.svg"
-						layout='fill'
-						alt='logo'
-					/>
+					<a>
+						<div className='relative h-10 w-20 flex-shrink-0 cursor-pointer'>
+						{" "}
+							<Image
+								objectFit='contain'
+								src="/logo/LogoText.svg"
+								layout='fill'
+								alt='logo'
+							/>
+						</div>
+					</a>
 				</Link>
 
-			</div>
+
 			{/* Home Icon + Dropdown menu */}
 			<div className='flex items-center mx-7 xl:min-w-[300px]'>
 				{/* flex : put the items in a row,
