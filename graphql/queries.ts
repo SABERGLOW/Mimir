@@ -127,3 +127,14 @@ export const GET_ALL_VOTES_BY_POST_ID = gql`
         }
     }
 `
+
+/* A GraphQL query which gets a limited amount of subreddits */
+export const GET_SUBREDDITS_WITH_LIMIT = gql`
+    query MyQuery($limit: Int!) {
+        getSUBREDDITListLimit(limit: $limit) {
+            created_at
+            id
+            topic
+        }
+    }
+`

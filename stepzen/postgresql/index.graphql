@@ -191,6 +191,18 @@ type Query {
 			table: "VOTE"
 			configuration: "postgresql_config"
 		)
+	getSUBREDDITListLimit(limit: Int!): [SUBREDDIT]
+    @dbquery(
+		type: "postgresql"
+		schema: "public"
+		query: """
+			SELECT * 
+			FROM "public"."SUBREDDIT"
+			ORDER BY "created_at" DESC
+			limit $1
+		"""
+		configuration: "postgresql_config"
+    )
 }
 
 """
