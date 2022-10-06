@@ -71,7 +71,7 @@ function Post({ post }: Props) {
 
         setVote(vote);
 
-    }, [data])
+    }, [data, session?.user?.name])
 
     
 
