@@ -114,3 +114,16 @@ export const GET_SUBREDDIT_LIST_BY_TOPIC = gql`
         }
     }
 `; 
+
+/* A GraphQL query which gets all votes by post id */
+export const GET_ALL_VOTES_BY_POST_ID = gql`
+    query MyQuery($post_id: ID!) {
+        getVotesByPostId(post_id: $post_id) {
+        created_at
+        id
+        post_id
+        upvote
+        username
+        }
+    }
+`

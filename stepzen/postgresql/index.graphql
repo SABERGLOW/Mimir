@@ -111,10 +111,20 @@ type Query {
 		@dbquery(
 			type: "postgresql"
 			query: """
-			SELECT T."created_at", T."id", T."post_id", T."upvote", T."username"
+			SELECT *
 				FROM "public"."VOTE" T
 				WHERE T."post_id" = $1
 				ORDER BY T."created_at" DESC
+			"""
+			configuration: "postgresql_config"
+		)
+	getVotesByPostId(post_id: ID!): [VOTE]
+		@dbquery(
+			type: "postgresql"
+			schema: "public"
+			query: """ 
+			SELECT * FROM "public"."VOTE" WHERE "post_id" = $1
+			ORDER BY "created_at" DESC 
 			"""
 			configuration: "postgresql_config"
 		)
