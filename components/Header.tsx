@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import logo from "../public//logo/LogoText.svg";
 import { signIn, signOut, useSession } from "next-auth/react";
 
 import {
@@ -34,13 +35,14 @@ function Header() {
 				{/* flex-shrink-0 makes sure our logo doesn't shrink when we set constraint to the header */}
 				<Link href="/">
 					<a>
-						<div className='relative h-10 w-20 flex-shrink-0 cursor-pointer'>
+						<div className='relative h-10 w-28 flex-shrink-0 cursor-pointer '>
 						{" "}
 							<Image
 								objectFit='contain'
-								src="/logo/LogoText.svg"
+								src={logo}
 								layout='fill'
 								alt='logo'
+								priority
 							/>
 						</div>
 					</a>
