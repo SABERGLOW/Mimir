@@ -6,8 +6,6 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
 a {
@@ -19,6 +17,48 @@ a {
   box-sizing: border-box;
 }
 
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url("/fonts/Gilroy/Gilroy-Bold.woff2") format("woff2");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url("/fonts/Gilroy/Gilroy-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url("/fonts/Gilroy/Gilroy-Medium.woff2") format("woff2");
+  font-weight: medium;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url("/fonts/Gilroy/Gilroy-Light.woff2") format("woff2");
+  font-weight: light;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url("/fonts/Gilroy/Gilroy-Regular.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Setting the color scheme to dark mode.
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
@@ -27,7 +67,7 @@ a {
     color: black;
     background: white;
   }
-}
+} */
 
 
 /* Creating a custom utility class called `icon` that has the following properties:
@@ -41,7 +81,7 @@ a {
 @layer components{
   .icon{
     @apply h-9 w-6 lg:w-9 cursor-pointer rounded-sm lg:p-1
-    lg:hover:bg-gray-100
+    lg:hover:bg-gray-100 dark:lg:hover:bg-[#044A42]
   }
 
   .voteButtons{
