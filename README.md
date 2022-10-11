@@ -1,6 +1,6 @@
 ---
 <div align="center">
-  <img alt="Logo" src="https://raw.githubusercontent.com/SABERGLOW/Mimir/b8f738a693c7e3cc6ea1d6af28fdf81606789646/public/logo/LogoText.svg" width="750" />
+  <img alt="Logo" src="https://raw.githubusercontent.com/SABERGLOW/Mimir/6e8ab101b8be3b006ea664287d96f4b0352a238e/public/logo/LogoText.svg" width="750" />
 </div>
 
 ---
