@@ -5,6 +5,7 @@ import Header from '../components/Header'
 import { ApolloProvider } from '@apollo/client'
 import client from '../apollo-client'
 import { Toaster } from 'react-hot-toast'
+import { ThemeProvider } from 'next-themes'
 
 /**
  * Wrapping "MyApp" with "SessionProvider" will make session available to all pages 
@@ -25,18 +26,19 @@ function MyApp({ Component, pageProps: {session, ...pageProps} }: AppProps) {
   return (
     <ApolloProvider client={client}>
       <SessionProvider session={pageProps.session}>
+        <ThemeProvider attribute='class'>
+          <Toaster/>
 
-        <Toaster/>
-
-        {/* Header will appear in each page */}
-        <div className='h-screen overflow-y-scroll bg-slate-200'>
-          {/* h-screen : height of the screen
-              overflow-y-scroll : allow the page to scroll vertically
-              bg-slate-200 : background color of the page
-          */}
-          <Header/>
-          <Component {...pageProps} />
-        </div>
+          {/* Header will appear in each page */}
+          <div className='h-screen overflow-y-scroll bg-slate-200'>
+            {/* h-screen : height of the screen
+                overflow-y-scroll : allow the page to scroll vertically
+                bg-slate-200 : background color of the page
+            */}
+            <Header/>
+            <Component {...pageProps} />
+          </div>
+        </ThemeProvider>
       </SessionProvider>
     </ApolloProvider>
   )
