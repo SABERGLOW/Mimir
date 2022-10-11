@@ -18,17 +18,17 @@ const Home: NextPage = () => {
 
 	{
 		/* Subreddit[] array contains the list of subreddits.
-      data?.getSUBREDDITListLimit is the data returned from the query.
-  */
+			data?.getSUBREDDITListLimit is the data returned from the query.
+		*/
 	}
 	const subreddits: Subreddit[] = data?.getSUBREDDITListLimit;
 
 	return (
 		<div className='my-7 mx-auto max-w-5xl'>
 			{/* my-7 = margin top and bottom 7
-          mx-auto = margin left and right auto 
-          max-w-5xl = max width 5xl, 64rem, 1024px 
-      */}
+				mx-auto = margin left and right auto 
+				max-w-5xl = max width 5xl, 64rem, 1024px 
+    		*/}
 
 			<Head>
 				<title>Mimir</title>
