@@ -158,10 +158,7 @@ function Post({ post }: Props) {
 
 
     return (
-
-        <Link href={`/post/${post.id}`}>
-
-            <div className="flex cursor-pointer border rounded-md border-gray-300 bg-white shadow-sm hover:border hover:border-gray-600">
+            <div className="flex cursor-pointer border rounded-md border-gray-300 bg-white shadow-sm hover:border hover:border-gray-600 dark:bg-gradient-to-b dark:from-[#062925] dark:to-[#044A42] font-gilroy subpixel-antialiased backdrop-blur-sm dark:hover:border-[#3A9188] dark:border-[#062925]">
                 {/*
                     flex : put the items in a row,
                     cursor-pointer : change the cursor to a pointer when we hover over the post
@@ -176,7 +173,7 @@ function Post({ post }: Props) {
 
 
                 {/* VOTE on the left side*/}
-                <div className="flex flex-col items-center justify-start space-y-1 rounded-l-md bg-gray-50 p-4 text-gray-400">
+                <div className="flex flex-col items-center justify-start space-y-1 rounded-l-md bg-gray-50 p-4 text-gray-400 dark:bg-[#062925] font-gilroy subpixel-antialiased">
                     {/*
                         flex : put the items in a row,
                         flex-col : put the items in a column,
@@ -189,91 +186,99 @@ function Post({ post }: Props) {
                         text-gray-400 : color of the text
                     */}
 
-                    <ArrowUpIcon onClick={() => upVote(true)} className={`voteButtons hover:text-red-400 ${vote && 'text-red-400'}`}/>
-                    <p className="text-black font-bold text-xs subpixel-antialiased">{displayVotes(data)}</p>
-                    <ArrowDownIcon onClick={() => upVote(false)} className={`voteButtons hover:text-red-400 ${vote === false && 'text-blue-400'}`}/>
+                    <ArrowUpIcon onClick={() => upVote(true)} className={`voteButtons stroke-[4px] hover:text-red-400 dark:hover:text-[#3A9188] ${vote && 'text-red-400 dark:text-[#3A9188]'}`}/>
+
+                    {/* if {displayVotes(data)} is less than zero, display red text, otherwise display green text */}
+                    <p className={`text-black font-bold text-sm subpixel-antialiased ${displayVotes(data) < 0 ? 'dark:text-[#F05454]' : 'dark:text-[#B8E1DD]'} `}>{displayVotes(data)}</p>
+
+                    <ArrowDownIcon onClick={() => upVote(false)} className={`voteButtons stroke-[4px] hover:text-red-400 dark:hover:text-[#F05454] ${vote === false && 'text-blue-400 dark:text-[#F05454]'}`}/>
                 </div>
 
-                {/* POST body on the right side*/}
-                
-                <div className="p-3 pb-1">
-                    {/* Header*/}
-                    <div className="flex items-center space-x-2 ">
-                        <AvatarSubreddit seed={post.subreddit.topic}/>
-                        <p className="text-xs text-gray-400 subpixel-antialiased">
-                            <Link href={`/subreddit/${post.subreddit.topic}`}>
-                                <span className="font-bold text-gray-700 hover:text-blue-400 hover:underline">
-                                    m/{post.subreddit.topic}
-                                </span> 
-                            </Link>{" "}
-                            • Posted by u/{post.username} 
-                            • <TimeAgo date={post.created_at} />
-                            
-                        </p>
-                    </div>
-
-                    {/* Body*/}
-                    <div className="py-4 ">
-                        <h1 className="text-lg font-semibold subpixel-antialiased">
-                            {post.title}
-                        </h1>
-                        <p className="mt-2 text-sm font-normal subpixel-antialiased">
-                            {post.body}
-                        </p>
-
-                    </div>
-
-                    {/* Image*/}
-                    {/* if post.image is empty or null, don't render it*/}
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    {post.image.length>1 && <img className="w-full rounded-md" src={post.image} alt="post" />}
+                <Link href={`/post/${post.id}`}>
+                    {/* POST body on the right side*/}
                     
-
-                    {/* Footer*/}
-                    <div className="flex space-x-4 text-gray-400 ">
-                        <div className="postButtons">
-                            <ChatBubbleLeftIcon className="h-6 w-6"/>
-                            <p className="">{post.comments.length} Comments</p>
+                    <div className="p-3 pb-1 dark:text-[#F1F2EB] font-gilroy subpixel-antialiased tracking-normal">
+                        {/* Header*/}
+                        <div className="flex items-center space-x-2 ">
+                            <AvatarSubreddit seed={post.subreddit.topic}/>
+                            <p className="text-xs text-gray-400 dark:text-[#B8E1DD] font-gilroy subpixel-antialiased">
+                                <Link href={`/subreddit/${post.subreddit.topic}`}>
+                                    <span className="font-semibold text-gray-700 hover:text-blue-400 hover:underline dark:text-[#B8E1DD] tracking-wide font-gilroy subpixel-antialiased">
+                                    {"  "}
+                                        m/{post.subreddit.topic}
+                                    </span> 
+                                </Link>
+                                {"  "}
+                                • Posted by u/{post.username} 
+                                {"  "}
+                                • <TimeAgo date={post.created_at} />
+                                
+                            </p>
                         </div>
 
-                        <div className="postButtons">
-                            <GiftIcon className="h-6 w-6"/>
-                            <p className="hidden sm:inline">Award</p>
+                        {/* Body*/}
+                        <div className="py-4 dark:text-[#F1F2EB]">
+                            <h1 className="font-gilroy text-lg font-semibold subpixel-antialiased tracking-wide">
+                                {post.title}
+                            </h1>
+                            <p className="font-gilroy mt-2 text-sm font-normal subpixel-antialiased tracking-wide">
+                                {post.body}
+                            </p>
+
                         </div>
 
-                        <div className="postButtons">
-                            <ShareIcon className="h-6 w-6"/>
-                            <p className="hidden sm:inline">Share</p>
-                        </div>
+                        {/* Image*/}
+                        {/* if post.image is empty or null, don't render it*/}
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        {post.image.length>1 && <img className="w-full rounded-md" src={post.image} alt="post" />}
+                        
 
-                        <div className="postButtons">
-                            <BookmarkIcon className="h-6 w-6"/>
-                            <p className="hidden sm:inline">Save</p>
-                        </div>
-
-                        {/* check the URL, if we are Post details, show more icons */}
-                        {isPostPage && 
+                        {/* Footer*/}
+                        <div className="flex space-x-4 text-gray-400 ">
                             <div className="postButtons">
-                                <EyeSlashIcon className="h-6 w-6"/>
-                                <p className="hidden sm:inline">Hide</p>
+                                <ChatBubbleLeftIcon className="h-6 w-6"/>
+                                <p className="">{post.comments.length} Comments</p>
                             </div>
-                        }
 
-                        {isPostPage && 
                             <div className="postButtons">
-                                <FlagIcon className="h-6 w-6"/>
-                                <p className="hidden sm:inline">Report</p>
+                                <GiftIcon className="h-6 w-6"/>
+                                <p className="hidden sm:inline">Award</p>
                             </div>
-                        }
 
-                        <div className="postButtons">
-                            <EllipsisHorizontalIcon className="h-6 w-6"/>
+                            <div className="postButtons">
+                                <ShareIcon className="h-6 w-6"/>
+                                <p className="hidden sm:inline">Share</p>
+                            </div>
+
+                            <div className="postButtons">
+                                <BookmarkIcon className="h-6 w-6"/>
+                                <p className="hidden sm:inline">Save</p>
+                            </div>
+
+                            {/* check the URL, if we are Post details, show more icons */}
+                            {isPostPage && 
+                                <div className="postButtons">
+                                    <EyeSlashIcon className="h-6 w-6"/>
+                                    <p className="hidden sm:inline">Hide</p>
+                                </div>
+                            }
+
+                            {isPostPage && 
+                                <div className="postButtons">
+                                    <FlagIcon className="h-6 w-6"/>
+                                    <p className="hidden sm:inline">Report</p>
+                                </div>
+                            }
+
+                            <div className="postButtons">
+                                <EllipsisHorizontalIcon className="h-6 w-6"/>
+                            </div>
+
                         </div>
-
                     </div>
-                </div>
+                </Link>
+
             </div>
-        </Link>
     )
 }
 

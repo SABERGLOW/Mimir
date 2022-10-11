@@ -232,9 +232,9 @@ function PostBox( {subreddit}: Props ) {
 		<form
 			/* Calling the onSubmit function. */
 			onSubmit={onSubmit}
-			className='sticky top-20 z-50 bg-white border rounded-md border-gray-300 p-2 '
+			className='sticky top-20 z-50 bg-white border rounded-md border-gray-300 p-2 dark:bg-[#062925]/95 font-gilroy backdrop-blur-sm dark:border-[#3A9188]'
 		>
-			<div className='flex items-center space-x-3 '>
+			<div className='flex items-center space-x-3 font-gilroy py-4'>
 				{/* User Avatar */}
 				<Avatar />
 
@@ -246,7 +246,7 @@ function PostBox( {subreddit}: Props ) {
 					/* A spread operator. It is taking the register function and spreading it out. */
 					{...register("postTitle", { required: true })}
 					disabled={!session}
-					className='flex-1 bg-gray-50 p-2 pl-5 outline-none rounded-md '
+					className='font-gilroy tracking-wide subpixel-antialiased flex-1 bg-gray-50 p-2 pl-5 outline-none rounded-md border dark:text-[#B8E1DD] dark:bg-[#044A42] dark:border-[#3A9188] backdrop-blur-sm'
 					type='text'
 					placeholder={
 						session ? subreddit ? `Create a post in m/${subreddit}` : "Create a Post" : "Sign In to create a post"
@@ -255,23 +255,28 @@ function PostBox( {subreddit}: Props ) {
 
 				<PhotoIcon
 					onClick={() => setimageBoxOpen(!imageBoxOpen)}
-					className={`h-6 text-gray-300 cursor-pointer ${
+					className={`dark:text-[#3A9188] dark:lg:hover:text-[#B8E1DD] h-6 text-gray-300 cursor-pointer ${
 						imageBoxOpen && "text-blue-500"
 					}`}
 				/>
 
-				<LinkIcon className='h-6 text-gray-300' />
+				<LinkIcon className='dark:text-[#3A9188] h-6 text-gray-300 dark:lg:hover:text-[#B8E1DD]' />
 			</div>
 
 			{/* Checking if the user has typed anything in the input box. If they have, it will display this section.
 				If they have not, it will not display. */}
 			{!!watch("postTitle") && (
-				<div className='flex flex-col py-2 '>
+				<div className='flex flex-col py-2'>
 					{/* Post Body */}
-					<div className='flex items-center px-2'>
-						<p className='min-w-[90px]'>Body:</p>
+					<div className='flex flex-wrap items-stretch w-full relative px-2 pb-2'>
+						<div className="flex -mr-px dark:bg-[#044A42] dark:text-[#B8E1DD]">
+							<span className="flex items-center leading-normal rounded rounded-r-none border border-r-0 dark:border-[#3A9188] px-[40px] whitespace-no-wrap">
+								Body
+							</span>
+							
+						</div>
 						<input
-							className='flex-1 m-2 bg-gray-50 p-2 outline-none'
+							className='flex-1 mr-2 relative bg-gray-50 p-2 outline-none border font-gilroy tracking-wide subpixel-antialiased rounded rounded-l-none dark:text-[#B8E1DD] dark:bg-[#044A42] dark:border-[#3A9188] backdrop-blur-sm'
 							{...register("postBody")}
 							type='text'
 							placeholder='Text (optional)'
@@ -281,10 +286,14 @@ function PostBox( {subreddit}: Props ) {
 					{/* Sub-Reddit - Only render if subreddit hasn't been passed in. */}
 					
 					{!subreddit && (
-						<div className='flex items-center px-2'>
-							<p className='min-w-[90px]'>SubMimir:</p>
+						<div className='flex flex-wrap items-stretch w-full relative px-2 py-2'>
+							<div className="flex -mr-px dark:bg-[#044A42] dark:text-[#B8E1DD]">
+								<span className="flex items-center leading-normal rounded rounded-r-none border border-r-0 dark:border-[#3A9188] pl-[25px] pr-[26px] whitespace-no-wrap">
+									SubMimir
+								</span>
+							</div>
 							<input
-								className='flex-1 m-2 bg-gray-50 p-2 outline-none'
+								className='flex-1 mr-2 relative bg-gray-50 p-2 outline-none border font-gilroy tracking-wide subpixel-antialiased rounded rounded-l-none dark:text-[#B8E1DD] dark:bg-[#044A42] dark:border-[#3A9188] backdrop-blur-sm'
 								{...register("subreddit", { required: true })}
 								type='text'
 								placeholder='i.e. Next.js'
@@ -298,10 +307,14 @@ function PostBox( {subreddit}: Props ) {
 						If it is not, it will not display the div. 
 					*/}
 					{imageBoxOpen && (
-						<div className='flex items-center px-2'>
-							<p className='min-w-[90px]'>Image URL:</p>
+						<div className='flex flex-wrap items-stretch w-full relative px-2 py-2'>
+							<div className="flex -mr-px dark:bg-[#044A42] dark:text-[#B8E1DD]">
+								<span className="flex items-center leading-normal rounded rounded-r-none border border-r-0 dark:border-[#3A9188] pl-[20px] pr-[19px] whitespace-no-wrap">
+									Image URL
+								</span>
+							</div>
 							<input
-								className='flex-1 m-2 bg-gray-50 p-2 outline-none'
+								className='flex-1 mr-2 relative bg-gray-50 p-2 outline-none border font-gilroy tracking-wide subpixel-antialiased rounded rounded-l-none dark:text-[#B8E1DD] dark:bg-[#044A42] dark:border-[#3A9188] backdrop-blur-sm'
 								{...register("postImage")}
 								type='text'
 								placeholder='Optional'
@@ -337,7 +350,7 @@ function PostBox( {subreddit}: Props ) {
 					{!!watch("postTitle") && (
 						<button
 							type='submit'
-							className='w-full rounded-full bg-blue-400 text-white font-semibold'
+							className='justify-center items-center align-middle drop-shadow-[0_5px_5px_rgba(184,225,221,0.05)] hover:drop-shadow-xl rounded-md p-2 m-2 bg-blue-400 text-white font-semibold  dark:text-[#B8E1DD] dark:bg-[#062824]  dark:border-[#044A42] dark:shadow-lg'
 						>
 							Post
 						</button>

@@ -85,10 +85,10 @@ a {
   }
 
   .voteButtons{
-    @apply h-6 w-6 hover:bg-gray-200 p-1 rounded-md 
+    @apply h-6 w-6 hover:bg-gray-200 p-1 rounded-md dark:hover:bg-[#F1F2EB]
   }
 
   .postButtons{
-    @apply flex items-center space-x-1 text-sm font-semibold p-2 hover:bg-gray-100 cursor-pointer rounded-sm
+    @apply flex items-center space-x-1 text-sm font-semibold p-2 hover:bg-gray-100 cursor-pointer rounded-sm dark:lg:hover:bg-[#044A42] dark:lg:hover:text-[#B8E1DD] dark:text-[#3A9188]
   }
 }

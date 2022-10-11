@@ -30,7 +30,7 @@ function MyApp({ Component, pageProps: {session, ...pageProps} }: AppProps) {
           <Toaster/>
 
           {/* Header will appear in each page */}
-          <div className='h-screen overflow-y-scroll bg-slate-200'>
+          <div className='h-screen overflow-y-scroll bg-slate-200 dark:bg-[#061211]'>
             {/* h-screen : height of the screen
                 overflow-y-scroll : allow the page to scroll vertically
                 bg-slate-200 : background color of the page

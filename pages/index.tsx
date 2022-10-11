@@ -47,12 +47,12 @@ const Home: NextPage = () => {
 				<Feed />
 
 				{/* Top Communities */}
-				<div className='sticky top-36 ml-5 mt-5 hidden h-fit min-w-[300px] rounded-md border border-gray-300 bg-white lg:inline'>
-					<p className='text-md mb-1 p-4 pb-3 font-bold'>
+				<div className='sticky top-36 ml-5 mt-5 hidden h-fit min-w-[300px] rounded-md border border-gray-300 bg-white lg:inline font-gilroy subpixel-antialiased dark:bg-[#062925]/95 dark:border-[#3A9188] backdrop-blur-sm'>
+					<p className='text-md mb-1 p-4 pb-3 font-bold dark:text-[#B8E1DD]'>
 						Top Communities
 					</p>
 
-					<div>
+					<div >
 						{/* Mapping over the subreddits array and returning a TopCommunities component for each subreddit. */}
             {/* List limited amount of SubMimirs */}
 						{subreddits?.map((subreddit, index) => (

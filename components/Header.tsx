@@ -33,7 +33,7 @@ function Header() {
 
 	return (
 		//... This is the Header component, it contains the navigation bar and the logo ...//
-		<div className='sticky top-0 z-50 flex bg-white/50 px-4 py-2 shadow-sm dark:bg-[#062925]/95 font-gilroy backdrop-blur-sm'>
+		<div className='sticky top-0 z-50 flex bg-white/50 px-4 py-2 shadow-sm dark:bg-[#062925]/95 font-gilroy subpixel-antialiased backdrop-blur-sm'>
 			{" "}
 			{/* sticky header, always stays on top even when we scroll down */}
 			
@@ -65,7 +65,7 @@ function Header() {
 
 				{/* Home Icon */}
 				<HomeIcon className='h-5 w-5 mb-1 dark:text-[#3A9188]'/>
-				<p className='font-semibold flex-1 ml-3 leading-none lg:inline hidden dark:text-[#B8E1DD] subpixel-antialiased'>
+				<p className=' flex-1 ml-3 leading-none lg:inline hidden dark:text-[#B8E1DD] subpixel-antialiased'>
 					Home
 					{/* flex-1 : allow our component to graw/shrink as needed
 						ml-2 : add a margin of 2 along x axis
@@ -145,7 +145,7 @@ function Header() {
 				<div
 					/* A function that calls the signOut function from the next-auth library. */
 					onClick={() => signOut()}
-					className='drop-shadow-[0_25px_25px_rgba(184,225,221,0.3)] hover:drop-shadow-xl hidden lg:flex items-center cursor-pointer space-x-2 border border-gray-200 bg-gray-100 rounded p-2 dark:bg-[#062824]  dark:border-[#044A42] dark:shadow-lg'
+					className='drop-shadow-[0_5px_5px_rgba(184,225,221,0.3)] hover:drop-shadow-xl hidden lg:flex items-center cursor-pointer space-x-2 border border-gray-200 bg-gray-100 rounded p-2 dark:bg-[#062824]  dark:border-[#044A42] dark:shadow-md'
 				>
 					<div className='relative h-7 w-20 flex-shrink-0'>
 						<Image
@@ -159,17 +159,17 @@ function Header() {
 					
 					<div className="flex-1 text-xs dark:text-[#B8E1DD] subpixel-antialiased">
 						<p className="truncate">{session?.user?.name}</p>
-						<p className='text-gray-400'>7 Mims</p>
+						<p className='text-gray-400 dark:text-[#B8E1DD]'>7 Mims</p>
 					</div>
 					
-					<ChevronDownIcon className="flex-shrink-0 h-5 text-gray-400" />
+					<ChevronDownIcon className="flex-shrink-0 h-5 text-gray-400 dark:text-[#3A9188]" />
 
 				</div>
 			) : (
 				<div
 					/* A function that calls the signIn function from the next-auth library. */
 					onClick={() => signIn()}
-					className='drop-shadow-[0_25px_25px_rgba(184,225,221,0.3)] hover:drop-shadow-xl hidden lg:flex items-center cursor-pointer space-x-2 border border-gray-200 bg-gray-100 rounded p-2 dark:bg-[#062824] dark:border-[#044A42] dark:shadow-lg'
+					className='drop-shadow-[0_5px_5px_rgba(184,225,221,0.3)] hover:drop-shadow-xl hidden lg:flex items-center cursor-pointer space-x-2 border border-gray-200 bg-gray-100 rounded p-2 dark:bg-[#062824] dark:border-[#044A42] dark:shadow-md'
 				>
 					<div className='relative h-7 w-20 flex-shrink-0'>
 						<Image
