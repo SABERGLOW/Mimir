@@ -4,6 +4,7 @@ import Avatar from "./Avatar";
 import { PhotoIcon, LinkIcon } from "@heroicons/react/24/solid";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@apollo/client";
+import { initializeApollo,  } from "../apollo";
 import client from "../apollo-client";
 import { ADD_POST, ADD_SUBREDDIT } from "../graphql/mutations";
 import { GET_ALL_POSTS, GET_SUBREDDIT_LIST_BY_TOPIC } from "../graphql/queries";
@@ -86,9 +87,10 @@ function PostBox( {subreddit}: Props ) {
 		{/* Checking if the subreddit exists. If it does not exist, it will alert the user. */}
 		try {
 			/* Destructuring the data from the query. */
+			const apolloClient = initializeApollo();
 			const {
 				data: { getSUBREDDITListByTopic },
-			} = await client.query({
+			} = await apolloClient.query({
 				// Query for the subreddit topic; check if the subreddit with the topic exists; passed in already.
 				query: GET_SUBREDDIT_LIST_BY_TOPIC,
 				variables: {
