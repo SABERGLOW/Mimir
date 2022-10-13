@@ -81,20 +81,20 @@ function Post({ post }: Props) {
     */}
     const upVote = async (isUpvote: boolean) => {
         if(!session){
-            toast('You must be logged in to vote.', {icon: '❗',} );
+            toast('You must be logged in to vote.', {icon: '❗', className:"dark:bg-[#3A9188]  dark:text-[#F1F2EB]"} );
             return;
         }
 
         /* It's checking if the user has already upvoted. If the user has already upvoted, and is trying to upvote again, it will return. */
         if (vote && isUpvote)
         {
-            toast('You have already upvoted.', {icon: '⚠️',} );
+            toast('You have already upvoted.', {icon: '⚠️', className:"dark:bg-[#3A9188] dark:text-[#F1F2EB]"} );
             return
         } 
         /* It's checking if the user has already downvoted. If the user has already downvoted, and is trying to downvote again, it will return. */
         if (vote === false && !isUpvote)
         {
-            toast('You have already downvoted.', {icon: '⚠️',} );
+            toast('You have already downvoted.', {icon: '⚠️', className:"dark:bg-[#3A9188] dark:text-[#F1F2EB]"} );
             return
         }
         console.log("voting...", isUpvote)
@@ -148,10 +148,10 @@ function Post({ post }: Props) {
     if (!post) return (
         <div className="flex w-full items-center justify-center p-10 text-xl">
             <LineWobble 
-                size={80}
-                lineWeight={5}
+                size={475}
+                lineWeight={7}
                 speed={1.50} 
-                color="black" 
+                color="#B8E1DD"
             />
         </div>
     )
@@ -194,6 +194,7 @@ function Post({ post }: Props) {
                     <ArrowDownIcon onClick={() => upVote(false)} className={`voteButtons stroke-[4px] hover:text-red-400 dark:hover:text-[#F05454] ${vote === false && 'text-blue-400 dark:text-[#F05454]'}`}/>
                 </div>
 
+                
                 <Link href={`/post/${post.id}`}>
                     {/* POST body on the right side*/}
                     

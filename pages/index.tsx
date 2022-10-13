@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Feed from "../components/Feed";
+import FeedSSR from "../components/FeedSSR";
 import PostBox from "../components/PostBox";
 import TopCommunities from "../components/TopCommunities";
 import { useQuery } from "@apollo/client";
@@ -44,10 +45,12 @@ const Home: NextPage = () => {
 
 			{/* Feed */}
 			<div className='flex'>
-				<Feed />
+				{/* <Feed /> */}
+				<FeedSSR></FeedSSR>
+				
 
 				{/* Top Communities */}
-				<div className='sticky top-36 ml-5 mt-5 hidden h-fit min-w-[300px] rounded-md border border-gray-300 bg-white lg:inline font-gilroy subpixel-antialiased dark:bg-[#062925]/95 dark:border-[#3A9188] backdrop-blur-sm'>
+				<div className='sticky top-48 ml-5 mt-5 hidden h-fit min-w-[300px] rounded-md border border-gray-300 bg-white lg:inline font-gilroy subpixel-antialiased dark:bg-[#062925]/95 dark:border-[#062925]/95 dark:hover:border-[#3A9188] backdrop-blur-sm'>
 					<p className='text-md mb-1 p-4 pb-3 font-bold dark:text-[#B8E1DD]'>
 						Top Communities
 					</p>

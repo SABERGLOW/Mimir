@@ -1,4 +1,5 @@
 import React from "react";
+import { useEffect, useState } from 'react';
 import Image from "next/image";
 import logo from "../public//logo/LogoText.svg";
 import { signIn, signOut, useSession } from "next-auth/react";
@@ -29,6 +30,7 @@ function Header() {
 	/* A function that checks if the user is logged in or not. */
 	const { data: session, status } = useSession();
 
+	/* A hook that allows us to access the theme state and the setTheme function. */
 	const {theme , setTheme} = useTheme();
 
 	return (
@@ -123,6 +125,8 @@ function Header() {
 				<hr className='h-10 border border-gray-100 hidden lg:inline-flex dark:text-[#3A9188] dark:bg-[#3A9188] dark:border-none dark:w-[1px]' />
 
 				{/* if dark mode, show SunIcon, otherwise, show MoonIcon */}
+				
+
 				{theme === "dark" ? (
 					<SunIcon
 						className='icon hidden lg:inline-flex dark:text-[#3A9188]'

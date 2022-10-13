@@ -3,6 +3,7 @@ import type { AppProps } from 'next/app'
 import { SessionProvider } from 'next-auth/react'
 import Header from '../components/Header'
 import { ApolloProvider } from '@apollo/client'
+import { useApollo } from '../apollo';
 import client from '../apollo-client'
 import { Toaster } from 'react-hot-toast'
 import { ThemeProvider } from 'next-themes'
@@ -23,8 +24,11 @@ import { ThemeProvider } from 'next-themes'
 
 function MyApp({ Component, pageProps: {session, ...pageProps} }: AppProps) {
   /* A higher order component design that wraps the component that is being rendered. */
+
+  const apolloClient = useApollo(pageProps.initialApolloState);
+
   return (
-    <ApolloProvider client={client}>
+    <ApolloProvider client={apolloClient}>
       <SessionProvider session={pageProps.session}>
         <ThemeProvider attribute='class'>
           <Toaster/>

@@ -81,12 +81,11 @@ function PostBox( {subreddit}: Props ) {
 		console.log(formData);
 
 		{/* A toast notification. It is a notification that pops up on the screen. react-hot-toast*/}
-		const notification = toast.loading("Posting...");
+		const notification = toast.loading("Posting...", {className:"dark:bg-[#3A9188] dark:text-[#F1F2EB]"});
 
 		{/* Checking if the subreddit exists. If it does not exist, it will alert the user. */}
 		try {
 			/* Destructuring the data from the query. */
-
 			const {
 				data: { getSUBREDDITListByTopic },
 			} = await client.query({
@@ -113,6 +112,8 @@ function PostBox( {subreddit}: Props ) {
 						topic: formData.subreddit,
 					},
 				});
+
+				
 
 				console.log(
 					"Subreddit created. Creating a new post...",
@@ -185,7 +186,7 @@ function PostBox( {subreddit}: Props ) {
 						className={`${
 							t.visible ? "animate-enter" : "animate-leave"
 						} 
-						max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5 mx-5`}
+						max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5 mx-5 dark:bg-[#044A42]  dark:hover:ring-[#3A9188]`}
 					>
 						<div className='flex-1 w-0 p-4'>
 							<div className='flex items-start'>
@@ -193,19 +194,19 @@ function PostBox( {subreddit}: Props ) {
 									<Avatar></Avatar>
 								</div>
 								<div className='ml-3 flex-1'>
-									<p className='text-sm font-medium text-gray-900'>
+									<p className='font-gilroy text-sm font-medium text-gray-900 dark:text-[#B8E1DD]'>
 										{session?.user?.name}
 									</p>
-									<p className='mt-1 text-sm text-gray-500'>
+									<p className='font-gilroy mt-1 text-sm text-gray-500 dark:text-[#B8E1DD]'>
 										{formData.postTitle}
 									</p>
 								</div>
 							</div>
 						</div>
-						<div className='flex border-l border-gray-200'>
+						<div className='flex border-l border-gray-200 dark:border-[#3A9188] rounded-r-lg dark:bg-[#3A9188] dark:hover:border-[#3A9188] '>
 							<button
 								onClick={() => toast.dismiss(t.id)}
-								className='w-full border border-transparent rounded-none rounded-r-lg p-4 flex items-center justify-center text-sm font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500'
+								className='font-gilroy tracking-wide w-full border border-transparent rounded-none rounded-r-lg p-4 flex items-center justify-center text-sm font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:text-[#F1F2EB] dark:focus:ring-[#3A9188]'
 							>
 								Close
 							</button>
@@ -232,7 +233,7 @@ function PostBox( {subreddit}: Props ) {
 		<form
 			/* Calling the onSubmit function. */
 			onSubmit={onSubmit}
-			className='sticky top-20 z-50 bg-white border rounded-md border-gray-300 p-2 dark:bg-[#062925]/95 font-gilroy backdrop-blur-sm dark:border-[#3A9188]'
+			className='sticky top-20 z-50 bg-white border rounded-md border-gray-300 p-2 dark:bg-[#062925]/95 font-gilroy backdrop-blur-sm dark:hover:border-[#3A9188]  dark:border-[#062925]/95'
 		>
 			<div className='flex items-center space-x-3 font-gilroy py-4'>
 				{/* User Avatar */}
@@ -327,15 +328,15 @@ function PostBox( {subreddit}: Props ) {
 						If there are not, it will not display the div. 
 					*/}
 					{Object.keys(errors).length > 0 && (
-						<div className='space-y-2 p-2 text-red-500'>
+						<div className='space-y-2 p-2 text-red-500 font-gilroy subpixel-antialiased'>
 							{errors.postTitle?.type === "required" && (
-								<p className=' text-xs'>
+								<p className=' text-xs dark:text-[#F05454]'>
 									❗A Title for the post is required.
 								</p>
 							)}
 
 							{errors.subreddit?.type === "required" && (
-								<p className='text-xs'>
+								<p className='text-xs dark:text-[#F05454]'>
 									❗A Subreddit for the post is required.
 								</p>
 							)}
@@ -350,7 +351,7 @@ function PostBox( {subreddit}: Props ) {
 					{!!watch("postTitle") && (
 						<button
 							type='submit'
-							className='justify-center items-center align-middle drop-shadow-[0_5px_5px_rgba(184,225,221,0.05)] hover:drop-shadow-xl rounded-md p-2 m-2 bg-blue-400 text-white font-semibold  dark:text-[#B8E1DD] dark:bg-[#062824]  dark:border-[#044A42] dark:shadow-lg'
+							className='justify-center items-center align-middle drop-shadow-[0_5px_5px_rgba(184,225,221,0.09)] hover:drop-shadow-xl rounded-md p-2 my-2 mr-[19px] ml-[11px] bg-blue-400 text-white font-semibold  dark:text-[#B8E1DD] dark:bg-[#062824] dark:ring-1  dark:ring-[#3A9188] dark:shadow-lg'
 						>
 							Post
 						</button>
@@ -362,3 +363,6 @@ function PostBox( {subreddit}: Props ) {
 }
 
 export default PostBox;
+
+
+
