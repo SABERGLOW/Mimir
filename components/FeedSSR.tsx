@@ -1,8 +1,22 @@
-import { useQuery } from '@apollo/client'
 import React from 'react'
 import { GET_ALL_POSTS, GET_ALL_POSTS_BY_TOPIC } from '../graphql/queries'
 import Post from './Post';
 import { LineWobble } from '@uiball/loaders'
+import apolloClient from '../apollo-client'
+import { initializeApollo } from "../apollo";
+import { GetStaticProps } from 'next';
+import { useQuery } from '@apollo/client';
+
+
+export async function getServerSideProps() {
+        const apolloClient = initializeApollo();
+        const {data} = await apolloClient.query({
+            query: GET_ALL_POSTS
+        })
+        return {
+            props: { initialApolloState: apolloClient.cache.extract(), data },
+        }
+} 
 
 /**
  * Props is an object that has a property called topic that is a string.
@@ -12,7 +26,6 @@ type Props = {
     topic?: string
 }
 
-
 /**
  * Feed is a function that returns a list of posts using the Post component. It uses the useQuery hook to fetch the posts from the server.
  * The posts are mapped using conditional rendering.
@@ -20,7 +33,7 @@ type Props = {
  * @see https://www.apollographql.com/docs/react/data/queries/
  * @returns A React component
  */
-function Feed( {topic} : Props) {
+function FeedSSR( {topic} : Props) {
 
     /* Destructuring the data and error from the useQuery hook. */
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -69,4 +82,4 @@ function Feed( {topic} : Props) {
     )
 }
 
-export default Feed
+export default FeedSSR
