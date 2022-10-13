@@ -30,7 +30,7 @@ function Avatar({ seed, large }: Props) {
 	return (
 		/* Rendering an image. */
         <div
-			className={`relative h-10 w-10 rounded-full border-gray-300 bg-slate-200 overflow-hidden ${large && "h-20 w-20"}`}
+			className={`relative h-10 w-10 rounded-full border-gray-300 bg-slate-200 overflow-hidden dark:ring-4 dark:ring-[#044A42] dark:hover:ring-[#B8E1DD] dark:hover:shadow-lg ${large && "h-20 w-20"}`}
 		>
 			<Image
 				layout='fill'

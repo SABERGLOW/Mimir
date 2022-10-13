@@ -30,13 +30,13 @@ function AvatarSubreddit({ seed, large }: Props) {
 	return (
 		/* Rendering an image. */
         <div
-			className={`relative h-10 w-10 rounded-full border-gray-300 bg-white overflow-hidden ${large && " h-20 w-20"}`}
+			className={`relative h-10 w-10 rounded-full border-gray-300 dark:ring-4 dark:ring-[#044A42] dark:hover:ring-[#B8E1DD] dark:hover:shadow-lg bg-white overflow-hidden ${large && " h-20 w-20"}`}
 		>
 			<Image
 				layout='fill'
 				objectFit='contain'
 				/* Setting the source of the image to the seed or the user's name, or a placeholder */
-                src={`https://avatars.dicebear.com/api/identicon/${seed||session?.user?.name}||placeholder.svg`}
+                src={`https://avatars.dicebear.com/api/bottts/${seed||session?.user?.name}||placeholder.svg`}
 				alt='avatar'
 			/>
 		</div>
