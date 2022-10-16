@@ -38,21 +38,21 @@ type Props = {
  * state, the useForm hook to handle form data, and the useMutation hook to handle the mutation. It
  * also uses the react-hot-toast library to display a notification when the post is created. It
  * returns a form with a title, body, image, and subreddit input.It also contains the button  and logic that
- * submits the form data to the GraphQL API. 
- * 
+ * submits the form data to the GraphQL API.
+ *
  * @param {Props} props - The props object. subreddit (optional) is a string that represents the name/topic of the subreddit that we want to fetch the posts from.
  * @returns A form that allows the user to create a post.
- * @see https://react-hook-form.com/api/useform
- * @see https://www.apollographql.com/docs/react/data/mutations/
- * @see https://next-auth.js.org/getting-started/client
- * @see https://react-hot-toast.com/
+ * @see {@link https://react-hook-form.com/api/useform}
+ * @see {@link https://www.apollographql.com/docs/react/data/mutations/}
+ * @see {@link https://next-auth.js.org/getting-started/client}
+ * @see {@link https://react-hot-toast.com/}
  */
 function PostBox( {subreddit}: Props ) {
 	{/* useSession so we can use logged in user state*/}
 	const { data: session } = useSession();
 
 	{/* Using the useMutation hook from Apollo Client. It is taking the ADD_POST mutation and storing it in the addPost variable.
-		refetchQueries is an array of queries that will be refetched after the mutation is completed. 
+		refetchQueries is an array of queries that will be refetched after the mutation is completed.
 		We are refetching the GET_ALL_POSTS query so that the new post will be displayed on the page.
 	*/}
 	const [addPost] = useMutation(ADD_POST, {
@@ -115,7 +115,7 @@ function PostBox( {subreddit}: Props ) {
 					},
 				});
 
-				
+
 
 				console.log(
 					"Subreddit created. Creating a new post...",
@@ -125,7 +125,7 @@ function PostBox( {subreddit}: Props ) {
 				const image = formData.postImage || " "; // If there is no image, set it to an empty string, protecting the database from null values.
 
 				{/* Adding a new post to the database. it will have the subreddit id of the newSubreddit.
-					Destructuring the data from the addPost mutation. 
+					Destructuring the data from the addPost mutation.
 				*/}
 
 				{/* Adding a new post to the database. */}
@@ -154,7 +154,7 @@ function PostBox( {subreddit}: Props ) {
 				const image = formData.postImage || " "; // If there is no image, set it to an empty string, protecting the database from null values.
 
 				{/* Destructuring the data from the addPost mutation.
-					Adding a new post to the database. 
+					Adding a new post to the database.
 				*/}
 				const {
 					data: { insertPOST: newPost },
@@ -187,7 +187,7 @@ function PostBox( {subreddit}: Props ) {
 					<div
 						className={`${
 							t.visible ? "animate-enter" : "animate-leave"
-						} 
+						}
 						max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5 mx-5 dark:bg-[#044A42]  dark:hover:ring-[#3A9188]`}
 					>
 						<div className='flex-1 w-0 p-4'>
@@ -241,8 +241,8 @@ function PostBox( {subreddit}: Props ) {
 				{/* User Avatar */}
 				<Avatar />
 
-				{/* Checking if the user is signed in. If they are, it will display "Create a Post" in the input box. 
-                If they are not signed in, it will display "Sign In to create a post" in the input box. 
+				{/* Checking if the user is signed in. If they are, it will display "Create a Post" in the input box.
+                If they are not signed in, it will display "Sign In to create a post" in the input box.
                 And the input box will be disabled.
             */}
 				<input
@@ -276,7 +276,7 @@ function PostBox( {subreddit}: Props ) {
 							<span className="flex items-center leading-normal rounded rounded-r-none border border-r-0 dark:border-[#3A9188] px-[40px] whitespace-no-wrap">
 								Body
 							</span>
-							
+
 						</div>
 						<input
 							className='flex-1 mr-2 relative bg-gray-50 p-2 outline-none border font-gilroy tracking-wide subpixel-antialiased rounded rounded-l-none dark:text-[#B8E1DD] dark:bg-[#044A42] dark:border-[#3A9188] backdrop-blur-sm'
@@ -287,7 +287,7 @@ function PostBox( {subreddit}: Props ) {
 					</div>
 
 					{/* Sub-Reddit - Only render if subreddit hasn't been passed in. */}
-					
+
 					{!subreddit && (
 						<div className='flex flex-wrap items-stretch w-full relative px-2 py-2'>
 							<div className="flex -mr-px dark:bg-[#044A42] dark:text-[#B8E1DD]">
@@ -303,11 +303,11 @@ function PostBox( {subreddit}: Props ) {
 							/>
 						</div>
 					)}
-					
+
 
 					{/* Image */}
-					{/* Checking if the imageBoxOpen state is true. If it is, it will display the div. 
-						If it is not, it will not display the div. 
+					{/* Checking if the imageBoxOpen state is true. If it is, it will display the div.
+						If it is not, it will not display the div.
 					*/}
 					{imageBoxOpen && (
 						<div className='flex flex-wrap items-stretch w-full relative px-2 py-2'>
@@ -326,8 +326,8 @@ function PostBox( {subreddit}: Props ) {
 					)}
 
 					{/* Erros */}
-					{/* Checking if there are any errors. If there are, it will display the relevant div. 
-						If there are not, it will not display the div. 
+					{/* Checking if there are any errors. If there are, it will display the relevant div.
+						If there are not, it will not display the div.
 					*/}
 					{Object.keys(errors).length > 0 && (
 						<div className='space-y-2 p-2 text-red-500 font-gilroy subpixel-antialiased'>
@@ -346,9 +346,9 @@ function PostBox( {subreddit}: Props ) {
 					)}
 
 					{/* Post Button */}
-					{/* Checking if the user has typed anything in the Post Title input box. 
-						If they have, it will display the submit post button. 
-						If they have not, it will not display the button. 
+					{/* Checking if the user has typed anything in the Post Title input box.
+						If they have, it will display the submit post button.
+						If they have not, it will not display the button.
 					*/}
 					{!!watch("postTitle") && (
 						<button

@@ -23,7 +23,7 @@ type FormData = {
  * URL, then uses the useQuery hook to get the post data from the GraphQL API, then renders the Post
  * component with the post data.
  * The PostPage function allows the user to view a post in detail and comment on it.
- * @see https://nextjs.org/docs/routing/dynamic-routes
+ * @see {@link https://nextjs.org/docs/routing/dynamic-routes}
  * @returns The PostPage component is being returned.
  */
 function PostPage() {
@@ -65,12 +65,12 @@ function PostPage() {
  * The onSubmit function is a function that is called when the user submits the form. It calls the insertCOMMENT mutation.
  * @param {FormData} data - The data that the user entered in the form.
  * @returns The onSubmit function is being returned.
- * @see https://react-hook-form.com/api/useform/submitform
- * @see https://react-hook-form.com/api/useform/setvalue
- * @see https://react-hook-form.com/api/useform/register
+ * @see {@link https://react-hook-form.com/api/useform/submitform}
+ * @see {@link https://react-hook-form.com/api/useform/setvalue}
+ * @see {@link https://react-hook-form.com/api/useform/register}
  */
     const onSubmit: SubmitHandler<FormData> = async (data) => {
-        
+
         /* Creating a loading animation. */
         const notification = toast.loading("Posting your comment...");
 
@@ -98,7 +98,7 @@ function PostPage() {
                 <div
                     className={`${
                         t.visible ? "animate-enter" : "animate-leave"
-                    } 
+                    }
                     max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5 mx-5`}
                 >
                     <div className='flex-1 w-0 p-4'>
@@ -133,7 +133,7 @@ function PostPage() {
     }
 
     return (
-        <div className="mx-auto my-7 max-w-5xl ">
+        <div className="mx-auto my-7 max-w-5xl font-gilroy subpixel-antialiased">
 
             {/* Conditional Rendering; If the post data is not available, it will return a loading animation. */}
 
@@ -145,9 +145,9 @@ function PostPage() {
                 //{/* Comment Section */}
                 <>
                     {/* Comment Section */}
-                    <div className="rounded-md border border-t-0 border-gray-300 bg-white p-5 pl-16 mt-2 hover:border hover:border-gray-600">
-                        <p className="text-sm">
-                            Comment as <span className="text-emerald-600">{session?.user?.name}</span>
+                    <div className="rounded-md border border-t-0 border-gray-300 bg-white p-5 pl-16 mt-2 hover:border hover:border-gray-600 dark:bg-gradient-to-b dark:from-[#062925] dark:to-[#044A42] font-gilroy subpixel-antialiased backdrop-blur-sm dark:hover:border-[#3A9188] dark:border-[#062925]">
+                        <p className="text-sm dark:text-[#F1F2EB] font-gilroy tracking-wide pb-2">
+                            Comment as <span className="font-semibold text-emerald-600 dark:text-[#3A9188]">{session?.user?.name}</span>
                         </p>
 
                         {/* Comment Text Area */}
@@ -157,44 +157,44 @@ function PostPage() {
                             <textarea
                                 {...register("comment", { required: true })}
                                 disabled={!session}
-                                className="h-24 rounded-md border bg-white border-gray-200 p-2 pl-4 outline-none disabled:bg-gray-50"
+                                className="h-24 rounded-md border bg-white border-gray-200 p-2 pl-4 outline-none disabled:bg-gray-50 dark:bg-[#044A42] dark:border-[#3A9188] dark:text-[#B8E1DD] font-gilroy subpixel-antialiased tracking-wide dark:hover:border-[#3A9188]"
                                 placeholder={session ? "What are your thoughts?" : "Please sign in to comment"} />
 
                             <button
                                 disabled={!session}
                                 type="submit"
-                                className="w-full rounded-full bg-blue-400 text-white font-semibold disabled:bg-gray-200">
+                                className="w-full bg-blue-400 text-white font-semibold disabled:bg-gray-200 dark:text-[#B8E1DD] dark:bg-[#062824]  dark:border-[#044A42] dark:shadow-lg drop-shadow-[0_5px_5px_rgba(184,225,221,0.05)] hover:drop-shadow-xl rounded-md p-2">
                                 Comment
                             </button>
                         </form>
                     </div>
-                    
-                    <div className="rounded-md border border-t-0 border-gray-300 bg-white mt-2  pt-5 pb-10 px-10 hover:border hover:border-gray-600 ">
+
+                    <div className="rounded-md border border-t-0 border-gray-300 bg-white mt-2  pt-5 pb-10 px-10 hover:border hover:border-gray-600 dark:bg-gradient-to-b dark:from-[#062925] dark:to-[#044A42] font-gilroy tracking-wide subpixel-antialiased backdrop-blur-sm dark:hover:border-[#3A9188] dark:border-[#062925]">
                         {post?.comments.map(comment => (
                                 <div className="relative flex items-center space-x-2 space-y-5" key={comment.id}>
-                                    <hr className="absolute top-10 left-7 h-14 border rounded-sm z-0 " />
+                                    <hr className="absolute top-10 left-7 h-14 border rounded-sm z-0 dark:border-[#B8E1DD]" />
 
                                     {/* User Avatar */}
-                                    <div className="z-50">
+                                    <div className="z-50 dark:text-[#B8E1DD]">
                                         <Avatar seed={comment.username} />
                                     </div>
 
                                     {/* Username + TimeAgo + Comment */}
-                                    <div className="flex flex-col ">
-                                        <p className="py-2 text-xs text-gray-400 ">
-                                            <span className="font-semibold text-gray-600 ">
+                                    <div className="flex flex-col">
+                                        <p className="py-2 text-xs text-gray-400 dark:text-[#B8E1DD]">
+                                            <span className="font-semibold text-gray-600 dark:text-[#B8E1DD]">
                                                 {comment.username}
                                             </span>
                                             {" "}
                                             • <TimeAgo date={comment.created_at} />
                                         </p>
 
-                                        <p>
+                                        <p className="dark:text-[#F1F2EB]">
                                             {comment.text}
                                         </p>
                                     </div>
                                 </div>
-                            
+
                         ))}
                     </div>
                 </>
