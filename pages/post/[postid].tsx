@@ -31,7 +31,7 @@ function PostPage() {
     {/* A hook that gives us access to the router object. */}
     const router = useRouter();
 
-    const POSTID = Number(router.query.postId);
+    const POSTID = Number(router.query.postid);
 
     //console.log("Post ID: " , POSTID, typeof POSTID);
 
