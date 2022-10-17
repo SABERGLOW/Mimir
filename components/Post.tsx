@@ -34,6 +34,7 @@ import { ADD_VOTE } from "../graphql/mutations";
  */
 type Props = {
 	post: Post;
+	postId: number;
 };
 
 /**
@@ -41,11 +42,15 @@ type Props = {
  * @param {Props}  - Props
  * @returns A React component
  */
-function Post({ post }: Props) {
+function Post({ post, postId }: Props) {
 	{
 		/* It's getting the session data from the user. */
 	}
 	const { data: session } = useSession();
+
+	//const POSTID = Number(post?.id);
+	const POSTID = postId;
+	//console.log("FEED POST ID: ", POSTID, typeof POSTID);
 
 	{
 		/* It's setting the vote state to a boolean. */
@@ -57,9 +62,11 @@ function Post({ post }: Props) {
 	}
 	const { data, loading } = useQuery(GET_ALL_VOTES_BY_POST_ID, {
 		variables: {
-			post_id: post?.id,
+			post_id: POSTID,
 		},
+
 	});
+
 
 	{
 		/* It's adding a vote to the database. using ADD_VOTE mutation.
@@ -256,7 +263,7 @@ function Post({ post }: Props) {
 				/>
 			</div>
 
-			<Link href={`/post/${post.id}`}>
+			<Link href={`/post/${post.id}`} passHref>
 				{/* POST body on the right side*/}
 
 				<div className='p-3 pb-1 dark:text-[#F1F2EB] font-gilroy subpixel-antialiased tracking-normal'>

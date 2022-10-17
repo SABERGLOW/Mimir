@@ -73,9 +73,11 @@ function FeedSSR( {topic} : Props) {
         /* Conditional Rendering; Mapping over the posts array and returning a Post component for each post. */
         <div className="mt-5 space-y-4">
             {posts?.map(post => (
+                //console.log("post id from feeed", post.id, typeof post.id),
                 <Post
-                    key={post.id}
+                    key={post?.id}
                     post={post}
+                    postId={Number(post?.id)}
                 />
             ))}
         </div>

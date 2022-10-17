@@ -31,6 +31,10 @@ function PostPage() {
     {/* A hook that gives us access to the router object. */}
     const router = useRouter();
 
+    const POSTID = Number(router.query.postId);
+
+    //console.log("Post ID: " , POSTID, typeof POSTID);
+
     {/* Getting the session data from the next-auth/react hook. Allows us to use user's logged-in state*/}
     const { data:session } = useSession();
 
@@ -42,7 +46,7 @@ function PostPage() {
     {/* Using the useQuery hook to get the post data from the GraphQL API. */}
     const { data } = useQuery(GET_POST_BY_POST_ID, {
         variables: {
-            post_id: router.query.postId
+            post_id: POSTID
         },
     })
 
@@ -138,7 +142,7 @@ function PostPage() {
             {/* Conditional Rendering; If the post data is not available, it will return a loading animation. */}
 
             {/* Post */}
-            <Post post={post}/>
+            <Post post={post} postId={POSTID} />
 
             {/* Check if the post has loaded */}
             {post && (

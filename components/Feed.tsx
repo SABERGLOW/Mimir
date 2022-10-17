@@ -57,15 +57,18 @@ function Feed( {topic} : Props) {
     )
 
     return (
-        /* Conditional Rendering; Mapping over the posts array and returning a Post component for each post. */
+        /* Conditional Rendering; Mapping over the posts array and returning a Post component for each post. and console log each post */
         <div className="mt-5 space-y-4">
             {posts?.map(post => (
                 <Post
-                    key={post.id}
+                    key={post?.id}
                     post={post}
+                    postId={post?.id}
                 />
-            ))}
+            ))
+            }
         </div>
+
     )
 }
 
