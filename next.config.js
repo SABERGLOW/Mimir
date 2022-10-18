@@ -4,6 +4,12 @@ const nextConfig = {
   swcMinify: true,
   images: {
     domains: ['avatars.dicebear.com'],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**",
+      },
+    ],
   },
 }
 
