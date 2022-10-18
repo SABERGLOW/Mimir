@@ -6,6 +6,7 @@ import PostBox from "../components/PostBox";
 import TopCommunities from "../components/TopCommunities";
 import { useQuery } from "@apollo/client";
 import { GET_SUBREDDITS_WITH_LIMIT } from "../graphql/queries";
+import favicon from "../public/favicon/favicon.ico";
 
 const Home: NextPage = () => {
 	{
@@ -27,17 +28,23 @@ const Home: NextPage = () => {
 	return (
 		<div className='my-7 mx-auto max-w-5xl'>
 			{/* my-7 = margin top and bottom 7
-				mx-auto = margin left and right auto 
-				max-w-5xl = max width 5xl, 64rem, 1024px 
+				mx-auto = margin left and right auto
+				max-w-5xl = max width 5xl, 64rem, 1024px
     		*/}
 
 			<Head>
 				<title>Mimir</title>
 				<meta
-					name='An online knowledge hub'
-					content='Developed with Next.js and Tailwind CSS'
+					name='description'
+					content='A forum-based online knowledge hub developed using Next.js & Tailwind CSS'
 				/>
-				<link rel='icon' href='/favicon/favicon.ico' />
+				<link rel='icon' href='{favicon}' as="image" imageSrcSet={
+					`${favicon}?q=70 1200w,
+					${favicon}?w=200&q=70 200w,
+					${favicon}?w=400&q=70 400w,
+					${favicon}?w=800&q=70 800w,
+					${favicon}?w=1024&q=70 1024w`
+					}/>
 			</Head>
 
 			{/* Post Box */}
@@ -47,7 +54,7 @@ const Home: NextPage = () => {
 			<div className='flex'>
 				{/* <Feed /> */}
 				<FeedSSR></FeedSSR>
-				
+
 
 				{/* Top Communities */}
 				<div className='sticky top-48 ml-5 mt-5 hidden h-fit min-w-[300px] rounded-md border border-gray-300 bg-white lg:inline font-gilroy subpixel-antialiased dark:bg-[#062925]/95 dark:border-[#062925]/95 dark:hover:border-[#3A9188] backdrop-blur-sm'>
