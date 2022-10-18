@@ -1422,7 +1422,7 @@
   "resolved" "https://registry.npmjs.org/natural-compare/-/natural-compare-1.4.0.tgz"
   "version" "1.4.0"
 
-"next-auth@^4.12.0":
+"next-auth@^4.14.0":
   "integrity" "sha512-pD5sin6kq/uIx3Cod2/0JFnViEnngBTTNy4CdfRaYc2QzV2zwpWAbQny2Ezlg0GjEozDhKC53JJxRRE4AmNKEw=="
   "resolved" "https://registry.npmjs.org/next-auth/-/next-auth-4.14.0.tgz"
   "version" "4.14.0"
