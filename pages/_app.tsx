@@ -1,15 +1,15 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
+import { Session } from 'next-auth';
 import { SessionProvider } from 'next-auth/react'
 import Header from '../components/Header'
 import { ApolloProvider } from '@apollo/client'
 import { useApollo } from '../apollo';
-import client from '../apollo-client'
 import { Toaster } from 'react-hot-toast'
 import { ThemeProvider } from 'next-themes'
 
 /**
- * Wrapping "MyApp" with "SessionProvider" will make session available to all pages 
+ * Wrapping "MyApp" with "SessionProvider" will make session available to all pages
  * and components in the application without the need to use the getSession in getServerSideProps or getStaticProps.
  * This allows us to use the session and hooks from next-auth/react inside our _app.tsx.
 */
@@ -22,10 +22,10 @@ import { ThemeProvider } from 'next-themes'
  * @returns A higher order component that wraps the component that is being rendered.
  */
 
-function MyApp({ Component, pageProps: {session, ...pageProps} }: AppProps) {
+function MyApp({ Component, pageProps, }: AppProps<{ session: Session;}>) {
   /* A higher order component design that wraps the component that is being rendered. */
 
-  const apolloClient = useApollo(pageProps.initialApolloState);
+  const apolloClient = useApollo(pageProps);
 
   return (
     <ApolloProvider client={apolloClient}>

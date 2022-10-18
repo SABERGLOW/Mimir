@@ -304,6 +304,7 @@ function Post({ post, postId }: Props) {
 								objectFit='cover'
 								className='rounded-md'
 								objectPosition='center'
+								priority
 							/>
 						</div>
 					)}
