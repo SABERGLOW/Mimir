@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import AvatarSubreddit from "./AvatarSubreddit";
 import TimeAgo from "react-timeago";
 import { LineWobble } from "@uiball/loaders";
+import NextImage from "next/image";
 
 import {
 	ArrowUpIcon,
@@ -294,9 +295,28 @@ function Post({ post, postId }: Props) {
 					</div>
 
 					{/* Image*/}
+					{isImage(post?.image) && (
+						<div className='relative w-full h-96'>
+							<NextImage
+								src={post.image}
+								alt='post image'
+								layout='fill'
+								objectFit='cover'
+								className='rounded-md'
+								objectPosition='center'
+							/>
+						</div>
+					)}
+
+
+
 					{/* if post.image is empty or null, don't render it*/}
 					{/* eslint-disable-next-line @next/next/no-img-element */}
-					{isImage(post?.image) && (<img className='w-full rounded-md' src={post.image} alt='post'/>)}
+					{/* {isImage(post?.image) && (<img className='w-full rounded-md' src={post.image} alt='post'/>)} */}
+						{/* {isImage(post?.image) && (
+							<NextImage className="w-full rounded-md" objectFit="contain" layout="fill" src={post.image} alt='post' priority/>
+						)} */}
+
                     {/* <img className='w-full rounded-md' src={post.image} alt='post'/> */}
 
 					{/* Footer*/}
