@@ -76,12 +76,12 @@ function PostPage() {
     const onSubmit: SubmitHandler<FormData> = async (data) => {
 
         /* Creating a loading animation. */
-        const notification = toast.loading("Posting your comment...");
+        const notification = toast.loading("Posting your comment...", {className:"dark:bg-[#3A9188] dark:text-[#F1F2EB]"});
 
         /* Calling the insertCOMMENT mutation and passing in the variables. */
         await insertCOMMENT({
             variables: {
-                post_id: router.query.postId,
+                post_id: POSTID,
                 username : session?.user?.name,
                 text: data.comment,
             },
@@ -103,7 +103,7 @@ function PostPage() {
                     className={`${
                         t.visible ? "animate-enter" : "animate-leave"
                     }
-                    max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5 mx-5`}
+                    max-w-md w-full bg-white shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5 mx-5 dark:bg-[#044A42]  dark:hover:ring-[#3A9188]`}
                 >
                     <div className='flex-1 w-0 p-4'>
                         <div className='flex items-start'>
@@ -111,20 +111,19 @@ function PostPage() {
                             <Avatar seed={session?.user?.name}/>
                             </div>
                             <div className='ml-3 flex-1'>
-                                <p className='text-sm font-medium text-gray-900'>
+                                <p className='text-sm font-medium text-gray-900 dark:text-[#B8E1DD]'>
                                     {session?.user?.name}
                                 </p>
-                                <p className='mt-1 text-sm text-gray-500'>
+                                <p className='mt-1 text-sm text-gray-500 dark:text-[#B8E1DD]'>
                                     {data.comment}
                                 </p>
                             </div>
                         </div>
                     </div>
-                    <div className='flex border-l border-gray-200'>
+                    <div className='flex border-l border-gray-200 dark:border-[#3A9188] rounded-r-lg dark:bg-[#3A9188] dark:hover:border-[#3A9188]'>
                         <button
                             onClick={() => toast.dismiss(t.id)}
-                            className='w-full border border-transparent rounded-none rounded-r-lg p-4 flex items-center justify-center text-sm font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500'
-                        >
+                            className='font-gilroy tracking-wide w-full border border-transparent rounded-none rounded-r-lg p-4 flex items-center justify-center text-sm font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:text-[#F1F2EB] dark:focus:ring-[#3A9188]'                        >
                             Close
                         </button>
                     </div>
