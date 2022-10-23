@@ -1,7 +1,5 @@
 import React from "react";
-import { useEffect, useState } from 'react';
 import Image from "next/image";
-import logo from "../public//logo/LogoText.svg";
 import { signIn, signOut, useSession } from "next-auth/react";
 
 import {
@@ -38,16 +36,16 @@ function Header() {
 		<div className='sticky top-0 z-50 flex bg-white/50 px-4 py-2 shadow-sm dark:bg-[#062925]/95 font-gilroy subpixel-antialiased backdrop-blur-sm'>
 			{" "}
 			{/* sticky header, always stays on top even when we scroll down */}
-			
-				
+
+
 				{/* flex-shrink-0 makes sure our logo doesn't shrink when we set constraint to the header */}
 				<Link href="/">
 					<a>
-						<div className='relative h-12 w-28 flex-shrink-0 cursor-pointer place-content-center items-center'>
+						<div className='mimir-logo-main relative h-12 w-28 flex-shrink-0 cursor-pointer place-content-center items-center'>
 						{" "}
 							<Image
-								
-								src={logo}
+								className="mimir-logo"
+								src='/logo/LogoText.svg'
 								layout='fill'
 								alt='logo'
 								priority={true}
@@ -125,7 +123,7 @@ function Header() {
 				<hr className='h-10 border border-gray-100 hidden lg:inline-flex dark:text-[#3A9188] dark:bg-[#3A9188] dark:border-none dark:w-[1px]' />
 
 				{/* if dark mode, show SunIcon, otherwise, show MoonIcon */}
-				
+
 
 				{theme === "dark" ? (
 					<SunIcon
@@ -149,7 +147,7 @@ function Header() {
 				<div
 					/* A function that calls the signOut function from the next-auth library. */
 					onClick={() => signOut()}
-					className='drop-shadow-[0_5px_5px_rgba(184,225,221,0.3)] hover:drop-shadow-xl hidden lg:flex items-center cursor-pointer space-x-2 border border-gray-200 bg-gray-100 rounded p-2 dark:bg-[#062824]  dark:border-[#044A42] dark:shadow-md'
+					className='signInOut drop-shadow-[0_5px_5px_rgba(184,225,221,0.3)] hover:drop-shadow-xl hidden lg:flex items-center cursor-pointer space-x-2 border border-gray-200 bg-gray-100 rounded p-2 dark:bg-[#062824]  dark:border-[#044A42] dark:shadow-md'
 				>
 					<div className='relative h-7 w-20 flex-shrink-0'>
 						<Image
@@ -160,12 +158,12 @@ function Header() {
 						/>
 						{/* objectFit='contain': make sure the image fits in the container */}
 					</div>
-					
+
 					<div className="flex-1 text-xs dark:text-[#B8E1DD] subpixel-antialiased">
 						<p className="truncate">{session?.user?.name}</p>
 						<p className='text-gray-400 dark:text-[#B8E1DD]'>7 Mims</p>
 					</div>
-					
+
 					<ChevronDownIcon className="flex-shrink-0 h-5 text-gray-400 dark:text-[#3A9188]" />
 
 				</div>
@@ -177,6 +175,7 @@ function Header() {
 				>
 					<div className='relative h-7 w-20 flex-shrink-0'>
 						<Image
+							className="mimir-logo"
 							objectFit='contain'
 							src='/logo/LogoText.svg'
 							layout='fill'
