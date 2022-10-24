@@ -55,20 +55,6 @@ describe("Header: Logged In", async () => {
 		cy.get(".signInOut").click();
 		cy.url().should("include", "/");
 
-		// /* Checking if the user is logged in or not. If the user is logged in, it will show the sign out
-		// button, if not, it will show the sign in button. */
-		// cy.mount(
-		//   <SessionProvider
-		//       session={{
-		//         expires: "1",
-		//         user: null,
-		//       }}
-		//     >
-
-		//     <ThemeProvider attribute='class'>
-		//       <Header/>
-		//     </ThemeProvider>
-		//   </SessionProvider>)
 	});
 });
 
