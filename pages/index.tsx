@@ -64,7 +64,7 @@ const Home: NextPage = () => {
 
 					<div >
 						{/* Mapping over the subreddits array and returning a TopCommunities component for each subreddit. */}
-            {/* List limited amount of SubMimirs */}
+            			{/* List limited amount of SubMimirs */}
 						{subreddits?.map((subreddit, index) => (
 							<TopCommunities
 								key={subreddit.id}
