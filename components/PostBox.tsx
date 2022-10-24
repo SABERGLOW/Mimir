@@ -5,7 +5,6 @@ import { PhotoIcon, LinkIcon } from "@heroicons/react/24/solid";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@apollo/client";
 import { initializeApollo,  } from "../apollo";
-import client from "../apollo-client";
 import { ADD_POST, ADD_SUBREDDIT } from "../graphql/mutations";
 import { GET_ALL_POSTS, GET_SUBREDDIT_LIST_BY_TOPIC } from "../graphql/queries";
 import toast from "react-hot-toast";
@@ -235,7 +234,7 @@ function PostBox( {subreddit}: Props ) {
 		<form
 			/* Calling the onSubmit function. */
 			onSubmit={onSubmit}
-			className='sticky top-20 z-50 bg-white border rounded-md border-gray-300 p-2 dark:bg-[#062925]/95 font-gilroy backdrop-blur-sm dark:hover:border-[#3A9188]  dark:border-[#062925]/95'
+			className='PostBoxForm sticky top-20 z-50 bg-white border rounded-md border-gray-300 p-2 dark:bg-[#062925]/95 font-gilroy backdrop-blur-sm dark:hover:border-[#3A9188]  dark:border-[#062925]/95'
 		>
 			<div className='flex items-center space-x-3 font-gilroy py-4'>
 				{/* User Avatar */}
@@ -258,7 +257,7 @@ function PostBox( {subreddit}: Props ) {
 
 				<PhotoIcon
 					onClick={() => setimageBoxOpen(!imageBoxOpen)}
-					className={`dark:text-[#3A9188] dark:lg:hover:text-[#B8E1DD] h-6 text-gray-300 cursor-pointer ${
+					className={`PhotoIconButton dark:text-[#3A9188] dark:lg:hover:text-[#B8E1DD] h-6 text-gray-300 cursor-pointer ${
 						imageBoxOpen && "text-blue-500"
 					}`}
 				/>
@@ -279,7 +278,7 @@ function PostBox( {subreddit}: Props ) {
 
 						</div>
 						<input
-							className='flex-1 mr-2 relative bg-gray-50 p-2 outline-none border font-gilroy tracking-wide subpixel-antialiased rounded rounded-l-none dark:text-[#B8E1DD] dark:bg-[#044A42] dark:border-[#3A9188] backdrop-blur-sm'
+							className='bodyInput flex-1 mr-2 relative bg-gray-50 p-2 outline-none border font-gilroy tracking-wide subpixel-antialiased rounded rounded-l-none dark:text-[#B8E1DD] dark:bg-[#044A42] dark:border-[#3A9188] backdrop-blur-sm'
 							{...register("postBody")}
 							type='text'
 							placeholder='Text (optional)'
@@ -296,7 +295,7 @@ function PostBox( {subreddit}: Props ) {
 								</span>
 							</div>
 							<input
-								className='flex-1 mr-2 relative bg-gray-50 p-2 outline-none border font-gilroy tracking-wide subpixel-antialiased rounded rounded-l-none dark:text-[#B8E1DD] dark:bg-[#044A42] dark:border-[#3A9188] backdrop-blur-sm'
+								className='subredditInput flex-1 mr-2 relative bg-gray-50 p-2 outline-none border font-gilroy tracking-wide subpixel-antialiased rounded rounded-l-none dark:text-[#B8E1DD] dark:bg-[#044A42] dark:border-[#3A9188] backdrop-blur-sm'
 								{...register("subreddit", { required: true })}
 								type='text'
 								placeholder='i.e. Next.js'
@@ -317,7 +316,7 @@ function PostBox( {subreddit}: Props ) {
 								</span>
 							</div>
 							<input
-								className='flex-1 mr-2 relative bg-gray-50 p-2 outline-none border font-gilroy tracking-wide subpixel-antialiased rounded rounded-l-none dark:text-[#B8E1DD] dark:bg-[#044A42] dark:border-[#3A9188] backdrop-blur-sm'
+								className=' ImageURL flex-1 mr-2 relative bg-gray-50 p-2 outline-none border font-gilroy tracking-wide subpixel-antialiased rounded rounded-l-none dark:text-[#B8E1DD] dark:bg-[#044A42] dark:border-[#3A9188] backdrop-blur-sm'
 								{...register("postImage")}
 								type='text'
 								placeholder='Optional'
