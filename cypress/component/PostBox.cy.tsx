@@ -2,8 +2,6 @@ import { SessionProvider } from "next-auth/react";
 import { ThemeProvider } from "next-themes";
 import PostBox from "../../components/PostBox";
 import { ApolloProvider } from "@apollo/client";
-import { useApollo } from "../../apollo";
-import apolloClient from "../../apollo-client";
 import createApolloClient from "../../apollo-client";
 
 describe("PostBox.cy.ts", () => {
