@@ -15,7 +15,7 @@
     "jsx": "preserve",
     "incremental": true,
     "strictNullChecks": false,
-    "types": ["node", "cypress", "jest"]
+    "types": ["node", "cypress", "cypress-real-events",  "jest"]
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "cypress"],
   "exclude": ["node_modules"]
