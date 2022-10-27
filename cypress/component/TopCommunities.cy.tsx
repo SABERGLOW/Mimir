@@ -82,6 +82,13 @@ describe("TopCommunities.cy.tsx", () => {
     // Check if the text "topic1" is visible
     cy.contains("topic1").should("be.visible");
 
+    // Check if the text "topic2" is visible and the font is Gilroy and color is #B8E1DD and font-weight is 500
+    cy.contains("topic2").should("be.visible");
+    cy.contains("topic2").should("have.css", "font-family", "Gilroy, sans-serif");
+    cy.contains("topic2").should("have.css", "color", "rgb(184, 225, 221)");
+    cy.contains("topic2").should("have.css", "font-weight", "400");
+
+
 	});
 });
 
