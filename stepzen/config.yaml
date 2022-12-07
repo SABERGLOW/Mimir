@@ -1,4 +1,4 @@
 configurationset:
   - configuration:
       name: postgresql_config
-      uri: postgresql://db.bmxyjhngboesluvbhhyr.supabase.co/postgres?user=postgres&password=JACKthorhammer6985
+      uri: process.env.STEPZEN_CONFIG_URI
